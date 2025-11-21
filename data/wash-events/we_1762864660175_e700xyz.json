@@ -1,0 +1,25 @@
+{
+  "id": "we_1762864660175_e700xyz",
+  "timestamp": "2025-11-11T12:37:40.175Z",
+  "vehicleNumber": "K593XO33",
+  "employeeIds": [
+    "emp_1762864597448_9pmw8jj"
+  ],
+  "paymentMethod": "cash",
+  "totalAmount": 1500,
+  "netAmount": 1500,
+  "acquiringFee": 0,
+  "services": {
+    "main": {
+      "serviceName": "Самосвал (одиночка)",
+      "price": 1500,
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1762864597448_9pmw8jj",
+          "amount": 1000
+        }
+      ]
+    },
+    "additional": []
+  }
+}

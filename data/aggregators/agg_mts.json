@@ -1,0 +1,13 @@
+{
+  "id": "agg_mts",
+  "name": "МТС (Международный Транспортный Сервис)",
+  "companies": [],
+  "cars": [],
+  "priceLists": [
+    {
+      "name": "Основной",
+      "services": []
+    }
+  ],
+  "activePriceListName": "Основной"
+}

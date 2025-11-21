@@ -1,0 +1,47 @@
+
+{
+  "id": "agg_shl",
+  "name": "ШЛ (Шинная Лига)",
+  "companies": [
+    {
+      "companyName": "ООО «Шинная Лига»",
+      "ownerName": "Представитель",
+      "managerSocialContact": "",
+      "accountantSocialContact": "",
+      "customerName": "",
+      "inn": "7820330619",
+      "kpp": "782001001",
+      "ogrnNumber": "",
+      "ogrnDate": "",
+      "legalAddress": "196626 Санкт-Петербург Шушары ул. Ленина д.8",
+      "bankName": "ФАКБ «Абсолют Банк» в г. Санкт-Петербург.",
+      "settlementAccount": "40702810322510004708",
+      "correspondentAccount": "30101810900000000703",
+      "bik": "044030703",
+      "phone": "+7 960 256 2560",
+      "email": "office@shinliga"
+    }
+  ],
+  "cars": [
+    {
+      "id": "car_agg_shl_1_Y333BB33",
+      "licensePlate": "Y333BB33"
+    },
+    {
+      "id": "car_agg_shl_2_T118OH152",
+      "licensePlate": "T118OH152"
+    }
+  ],
+  "priceLists": [
+    {
+      "name": "Основной",
+      "services": [
+        {
+          "serviceName": "Мойка тягача + полу прицепа 90 куб",
+          "price": 1700
+        }
+      ]
+    }
+  ],
+  "activePriceListName": "Основной"
+}

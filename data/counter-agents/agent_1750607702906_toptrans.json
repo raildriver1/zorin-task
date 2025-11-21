@@ -1,0 +1,247 @@
+{
+  "id": "agent_1750607702906_toptrans",
+  "name": "Топ Транс",
+  "companies": [
+    {
+      "companyName": "ООО \"ТТ\"",
+      "ownerName": "Богданов Д.А.",
+      "managerSocialContact": "",
+      "accountantSocialContact": "",
+      "customerName": "ООО \"ТТ\"",
+      "inn": "5263106535",
+      "kpp": "526301001",
+      "ogrnNumber": "",
+      "ogrnDate": "",
+      "legalAddress": "603037, Нижегородская обл., г. Нижний Новгород, ул. Федосеенко, д. 49, литера В, ком. 7, 13",
+      "bankName": "",
+      "settlementAccount": "",
+      "correspondentAccount": "",
+      "bik": "",
+      "phone": "",
+      "email": ""
+    }
+  ],
+  "cars": [
+    {
+      "id": "car_agent_1750607702906_toptrans_1_A705AУ252",
+      "licensePlate": "A705AY252"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_2_A532AУ252",
+      "licensePlate": "A532AY252"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_3_A885AУ252",
+      "licensePlate": "A885AY252"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_4_T977УН152",
+      "licensePlate": "T977YH152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_5_A116AХ252",
+      "licensePlate": "A116AX252"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_6_T797УХ152",
+      "licensePlate": "T797YX152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_7_T556УМ152",
+      "licensePlate": "T556YM152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_8_T558УК152",
+      "licensePlate": "T558YK152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_9_T450ТК152",
+      "licensePlate": "T450TK152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_10_T788ХН152",
+      "licensePlate": "T788XH152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_11_T180УН152",
+      "licensePlate": "T180YH152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_12_T891СМ152",
+      "licensePlate": "T891CM152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_13_T089ТН152",
+      "licensePlate": "T089TH152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_14_T978СМ152",
+      "licensePlate": "T978CM152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_15_T156ОО152",
+      "licensePlate": "T156OO152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_16_T157ОО152",
+      "licensePlate": "T157OO152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_17_T955МТ152",
+      "licensePlate": "T955MT152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_18_T956МТ152",
+      "licensePlate": "T956MT152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_19_T958МТ152",
+      "licensePlate": "T958MT152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_20_T959МТ152",
+      "licensePlate": "T959MT152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_21_T964МТ152",
+      "licensePlate": "T964MT152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_22_T824МТ152",
+      "licensePlate": "T824MT152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_23_T819МТ152",
+      "licensePlate": "T819MT152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_24_T797МТ152",
+      "licensePlate": "T797MT152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_25_T825МТ152",
+      "licensePlate": "T825MT152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_26_T019МТ152",
+      "licensePlate": "T019MT152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_27_T870МУ152",
+      "licensePlate": "T870MY152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_28_T058ОЕ152",
+      "licensePlate": "T058OE152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_29_T744ВВ152",
+      "licensePlate": "T744BB152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_30_T787ВВ152",
+      "licensePlate": "T787BB152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_31_T546ВО152",
+      "licensePlate": "T546BO152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_32_T626ВО152",
+      "licensePlate": "T626BO152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_33_T556ВО152",
+      "licensePlate": "T556BO152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_34_T509ВО152",
+      "licensePlate": "T509BO152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_35_T129КР152",
+      "licensePlate": "T129KP152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_36_T648ВО152",
+      "licensePlate": "T648BO152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_37_C284ОН152",
+      "licensePlate": "C284OH152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_38_C526СО152",
+      "licensePlate": "C526CO152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_39_C997КС152",
+      "licensePlate": "C997KC152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_40_C762ЕЕ152",
+      "licensePlate": "C762EE152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_41_P795ХО152",
+      "licensePlate": "P795XO152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_42_P989ХТ152",
+      "licensePlate": "P989XT152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_43_P726ВМ152",
+      "licensePlate": "P726BM152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_44_C874ВА152",
+      "licensePlate": "C874BA152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_45_T461КВ152",
+      "licensePlate": "T461KB152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_46_C003ЕА152",
+      "licensePlate": "C003EA152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_47_P172ОО152",
+      "licensePlate": "P172OO152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_48_P072РА152",
+      "licensePlate": "P072PA152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_49_T480ОО152",
+      "licensePlate": "T480OO152"
+    },
+    {
+      "id": "car_agent_1750607702906_toptrans_50_P988ХО152",
+      "licensePlate": "P988XO152"
+    }
+  ],
+  "priceList": [
+    {
+      "serviceName": "Мойка 90 кубов (тягач + прицеп)",
+      "price": 1800,
+      "chemicalConsumption": 0
+    },
+    {
+      "serviceName": "Тягач",
+      "price": 900,
+      "chemicalConsumption": 150
+    }
+  ],
+  "additionalPriceList": [
+    {
+      "serviceName": "радиатор",
+      "price": 600,
+      "chemicalConsumption": 250
+    }
+  ],
+  "allowCustomServices": true,
+  "balance": 0
+}

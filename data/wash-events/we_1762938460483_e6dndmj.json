@@ -1,0 +1,25 @@
+{
+  "id": "we_1762938460483_e6dndmj",
+  "timestamp": "2025-11-12T09:07:40.483Z",
+  "vehicleNumber": "A453TX33",
+  "employeeIds": [
+    "emp_1762864597448_9pmw8jj"
+  ],
+  "paymentMethod": "cash",
+  "totalAmount": 1800,
+  "netAmount": 1800,
+  "acquiringFee": 0,
+  "services": {
+    "main": {
+      "serviceName": "Фура (тягач европеец + полуприцеп)",
+      "price": 1800,
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1762864597448_9pmw8jj",
+          "amount": 400
+        }
+      ]
+    },
+    "additional": []
+  }
+}

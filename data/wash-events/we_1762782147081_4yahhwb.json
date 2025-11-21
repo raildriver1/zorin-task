@@ -1,0 +1,25 @@
+{
+  "id": "we_1762782147081_4yahhwb",
+  "timestamp": "2025-11-10T13:42:27.081Z",
+  "vehicleNumber": "A760TB33",
+  "employeeIds": [
+    "emp_1762757468682_a072ahl"
+  ],
+  "paymentMethod": "cash",
+  "totalAmount": 1100,
+  "netAmount": 1100,
+  "acquiringFee": 0,
+  "services": {
+    "main": {
+      "serviceName": "Одиночка до 15 тонн (снаружи)",
+      "price": 1100,
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1762757468682_a072ahl",
+          "amount": 400
+        }
+      ]
+    },
+    "additional": []
+  }
+}

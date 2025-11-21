@@ -1,0 +1,27 @@
+{
+  "id": "we_1763051860715_r4m9phb",
+  "timestamp": "2025-11-13T16:37:40.715Z",
+  "vehicleNumber": "M903PK33",
+  "employeeIds": [
+    "emp_1762757468682_a072ahl"
+  ],
+  "paymentMethod": "cash",
+  "totalAmount": 300,
+  "netAmount": 300,
+  "acquiringFee": 0,
+  "services": {
+    "main": {
+      "serviceName": "легковая",
+      "price": 300,
+      "isCustom": true,
+      "id": "custom-легковая-1763051855699",
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1762757468682_a072ahl",
+          "amount": 50
+        }
+      ]
+    },
+    "additional": []
+  }
+}

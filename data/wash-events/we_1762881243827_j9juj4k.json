@@ -1,0 +1,91 @@
+{
+  "id": "we_1762881243827_j9juj4k",
+  "timestamp": "2025-11-11T17:14:00.827Z",
+  "vehicleNumber": "M480PC797",
+  "employeeIds": [
+    "emp_1762864597448_9pmw8jj"
+  ],
+  "paymentMethod": "aggregator",
+  "sourceId": "agg_ds",
+  "sourceName": "ДС (Дорожная сеть)",
+  "priceListName": "Летний (апрель-октябрь)",
+  "totalAmount": 1304,
+  "netAmount": 1304,
+  "acquiringFee": 0,
+  "services": {
+    "main": {
+      "serviceName": "Мойка фура Европа реф, контейнер, тент, (до 90 куб.м.) - категория 1",
+      "price": 1304,
+      "chemicalConsumption": 900,
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1762864597448_9pmw8jj",
+          "amount": 400
+        }
+      ]
+    },
+    "additional": []
+  },
+  "editHistory": [
+    {
+      "editedAt": "2025-11-11T22:15:34.354Z",
+      "editedBy": "emp_manager_admin",
+      "previousState": {
+        "id": "we_1762881243827_j9juj4k",
+        "timestamp": "2025-11-11T17:14:03.827Z",
+        "vehicleNumber": "M480PC797",
+        "employeeIds": [
+          "emp_1762864597448_9pmw8jj"
+        ],
+        "paymentMethod": "aggregator",
+        "sourceId": "agg_ds",
+        "sourceName": "ДС (Дорожная сеть)",
+        "priceListName": "Летний (апрель-октябрь)",
+        "totalAmount": 1304,
+        "netAmount": 1304,
+        "acquiringFee": 0,
+        "services": {
+          "main": {
+            "serviceName": "Мойка фура Европа реф, контейнер, тент, (до 90 куб.м.) - категория 1",
+            "price": 1304,
+            "chemicalConsumption": 900,
+            "employeeConsumptions": [
+              {
+                "employeeId": "emp_1762864597448_9pmw8jj",
+                "amount": 1000
+              }
+            ]
+          },
+          "additional": []
+        }
+      }
+    },
+    {
+      "editedAt": "2025-11-11T22:21:34.477Z",
+      "editedBy": "emp_manager_admin",
+      "previousState": {
+        "id": "we_1762881243827_j9juj4k",
+        "timestamp": "2025-11-11T17:14:00.827Z",
+        "vehicleNumber": "M480PC797",
+        "employeeIds": [
+          "emp_1762864597448_9pmw8jj"
+        ],
+        "paymentMethod": "aggregator",
+        "sourceId": "agg_ds",
+        "sourceName": "ДС (Дорожная сеть)",
+        "priceListName": "Летний (апрель-октябрь)",
+        "totalAmount": 950,
+        "netAmount": 950,
+        "acquiringFee": 0,
+        "services": {
+          "main": {
+            "serviceName": "Мойка полуприцепа без тягача снаружи (от 91 куб. м.) - категория 1",
+            "price": 950,
+            "chemicalConsumption": 0
+          },
+          "additional": []
+        }
+      }
+    }
+  ]
+}

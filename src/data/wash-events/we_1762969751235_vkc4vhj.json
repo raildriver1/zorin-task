@@ -1,0 +1,32 @@
+{
+  "id": "we_1762969751235_vkc4vhj",
+  "timestamp": "2025-11-12T17:49:11.235Z",
+  "vehicleNumber": "P347YK797",
+  "employeeIds": [
+    "emp_1762864597448_9pmw8jj"
+  ],
+  "paymentMethod": "cash",
+  "totalAmount": 1800,
+  "netAmount": 1800,
+  "acquiringFee": 0,
+  "services": {
+    "main": {
+      "serviceName": "Фура (тягач европеец + полуприцеп)",
+      "price": 1800,
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1762864597448_9pmw8jj",
+          "amount": 400
+        }
+      ]
+    },
+    "additional": []
+  },
+  "driverComments": [
+    {
+      "text": "11",
+      "authorId": "emp_manager_admin",
+      "date": "2025-11-13T14:55:58.933Z"
+    }
+  ]
+}

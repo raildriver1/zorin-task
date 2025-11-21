@@ -1,0 +1,29 @@
+{
+  "id": "we_1762866915685_1prjjb9",
+  "timestamp": "2025-11-11T13:15:15.685Z",
+  "vehicleNumber": "P065MM977",
+  "employeeIds": [
+    "emp_1762864597448_9pmw8jj"
+  ],
+  "paymentMethod": "aggregator",
+  "sourceId": "agg_ds",
+  "sourceName": "ДС (Дорожная сеть)",
+  "priceListName": "Летний (апрель-октябрь)",
+  "totalAmount": 658,
+  "netAmount": 658,
+  "acquiringFee": 0,
+  "services": {
+    "main": {
+      "serviceName": "Мойка грузовика (от 3,6 до 5 тонн) - категория 1",
+      "price": 658,
+      "chemicalConsumption": 0,
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1762864597448_9pmw8jj",
+          "amount": 1000
+        }
+      ]
+    },
+    "additional": []
+  }
+}

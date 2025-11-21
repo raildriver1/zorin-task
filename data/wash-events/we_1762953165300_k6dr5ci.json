@@ -1,0 +1,32 @@
+{
+  "id": "we_1762953165300_k6dr5ci",
+  "timestamp": "2025-11-12T13:12:45.300Z",
+  "vehicleNumber": "T756YA43",
+  "employeeIds": [
+    "emp_1762864597448_9pmw8jj"
+  ],
+  "paymentMethod": "cash",
+  "totalAmount": 2000,
+  "netAmount": 2000,
+  "acquiringFee": 0,
+  "services": {
+    "main": {
+      "serviceName": "Паровоз (сцепка)",
+      "price": 2000,
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1762864597448_9pmw8jj",
+          "amount": 400
+        }
+      ]
+    },
+    "additional": []
+  },
+  "driverComments": [
+    {
+      "text": "12",
+      "authorId": "emp_manager_admin",
+      "date": "2025-11-13T16:16:06.540Z"
+    }
+  ]
+}

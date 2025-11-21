@@ -1,0 +1,29 @@
+{
+  "id": "we_1762944293571_1256zct",
+  "timestamp": "2025-11-12T10:44:53.571Z",
+  "vehicleNumber": "C003PE152",
+  "employeeIds": [
+    "emp_1762864597448_9pmw8jj"
+  ],
+  "paymentMethod": "aggregator",
+  "sourceId": "agg_ds",
+  "sourceName": "ДС (Дорожная сеть)",
+  "priceListName": "Летний (апрель-октябрь)",
+  "totalAmount": 1304,
+  "netAmount": 1304,
+  "acquiringFee": 0,
+  "services": {
+    "main": {
+      "serviceName": "Мойка фура Европа реф, контейнер, тент, (до 90 куб.м.) - категория 1",
+      "price": 1304,
+      "chemicalConsumption": 900,
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1762864597448_9pmw8jj",
+          "amount": 900
+        }
+      ]
+    },
+    "additional": []
+  }
+}

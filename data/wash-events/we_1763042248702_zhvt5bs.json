@@ -1,0 +1,27 @@
+{
+  "id": "we_1763042248702_zhvt5bs",
+  "timestamp": "2025-11-13T13:57:28.702Z",
+  "vehicleNumber": "A571KM33",
+  "employeeIds": [
+    "emp_1762757468682_a072ahl"
+  ],
+  "paymentMethod": "cash",
+  "totalAmount": 1000,
+  "netAmount": 1000,
+  "acquiringFee": 0,
+  "services": {
+    "main": {
+      "serviceName": "сомосвал 10т",
+      "price": 1000,
+      "isCustom": true,
+      "id": "custom-сомосвал 10т-1763042242612",
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1762757468682_a072ahl",
+          "amount": 200
+        }
+      ]
+    },
+    "additional": []
+  }
+}

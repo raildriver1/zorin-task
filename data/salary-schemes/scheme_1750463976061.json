@@ -1,0 +1,17 @@
+{
+  "id": "scheme_1750463976061",
+  "name": "ШЛ (Шинная Лига)",
+  "type": "rate",
+  "rateSource": {
+    "type": "aggregator",
+    "id": "agg_shl",
+    "priceListName": "Основной"
+  },
+  "rates": [
+    {
+      "serviceName": "Мойка тягача + полу прицепа 90 куб",
+      "rate": 850,
+      "deduction": 100
+    }
+  ]
+}

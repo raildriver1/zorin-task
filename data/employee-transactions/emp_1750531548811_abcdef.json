@@ -1,0 +1,26 @@
+[
+  {
+    "id": "txn_1750467235943_bfjnp42",
+    "employeeId": "emp_1750531548811_abcdef",
+    "date": "2025-06-21T00:53:55.943Z",
+    "type": "purchase",
+    "amount": 3000,
+    "description": "ну"
+  },
+  {
+    "id": "txn_1755718272634_tma68z5",
+    "employeeId": "emp_1750531548811_abcdef",
+    "date": "2025-08-20T19:31:12.634Z",
+    "type": "payment",
+    "amount": 6000,
+    "description": "зарплата за август"
+  },
+  {
+    "id": "txn_1755723375057_w70zo5l",
+    "employeeId": "emp_1750531548811_abcdef",
+    "date": "2025-08-20T20:56:15.057Z",
+    "type": "purchase",
+    "amount": 3000,
+    "description": "2"
+  }
+]

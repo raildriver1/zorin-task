@@ -1,0 +1,312 @@
+{
+  "id": "agent_1750441067738_4yernb7",
+  "name": "ООО \"Автокомерц\"",
+  "companies": [
+    {
+      "companyName": "ООО \"Автокомерц\"",
+      "ownerName": "Роман",
+      "managerSocialContact": "",
+      "accountantSocialContact": "",
+      "customerName": "",
+      "inn": "",
+      "kpp": "",
+      "ogrnNumber": "",
+      "ogrnDate": "",
+      "legalAddress": "",
+      "bankName": "",
+      "settlementAccount": "",
+      "correspondentAccount": "",
+      "bik": "",
+      "phone": "",
+      "email": ""
+    }
+  ],
+  "cars": [
+    {
+      "id": "car_agent_1750441067738_4yernb7_1_H805HA777",
+      "licensePlate": "H805HA777"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_2_T810HX750",
+      "licensePlate": "T810HX750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_3_X058KM750",
+      "licensePlate": "X058KM750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_4_M775TA750",
+      "licensePlate": "M775TA750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_5_H747OY750",
+      "licensePlate": "H747OY750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_6_H703OY750",
+      "licensePlate": "H703OY750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_7_H722OY750",
+      "licensePlate": "H722OY750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_8_K181PO750",
+      "licensePlate": "K181PO750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_9_K259PO750",
+      "licensePlate": "K259PO750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_10_K254PO750",
+      "licensePlate": "K254PO750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_11_T799PX190",
+      "licensePlate": "T799PX190"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_12_B324XY790",
+      "licensePlate": "B324XY790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_13_A787XY790",
+      "licensePlate": "A787XY790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_14_X239HX750",
+      "licensePlate": "X239HX750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_15_E677PB750",
+      "licensePlate": "E677PB750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_16_B552PB750",
+      "licensePlate": "B552PB750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_17_E280OT750",
+      "licensePlate": "E280OT750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_18_E032OT750",
+      "licensePlate": "E032OT750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_19_B046OT750",
+      "licensePlate": "B046OT750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_20_X566OP750",
+      "licensePlate": "X566OP750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_21_X551OP750",
+      "licensePlate": "X551OP750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_22_T196OY750",
+      "licensePlate": "T196OY750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_23_T318OY750",
+      "licensePlate": "T318OY750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_24_B115MC750",
+      "licensePlate": "B115MC750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_25_O203OC750",
+      "licensePlate": "O203OC750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_26_Y286TO77",
+      "licensePlate": "Y286TO77"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_27_E435CM750",
+      "licensePlate": "E435CM750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_28_K507YB750",
+      "licensePlate": "K507YB750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_29_K514YB750",
+      "licensePlate": "K514YB750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_30_K645YB750",
+      "licensePlate": "K645YB750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_31_K546YB750",
+      "licensePlate": "K546YB750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_32_K631YB750",
+      "licensePlate": "K631YB750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_33_T258TM750",
+      "licensePlate": "T258TM750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_34_T321TM750",
+      "licensePlate": "T321TM750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_35_O632CK790",
+      "licensePlate": "O632CK790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_36_P492HX790",
+      "licensePlate": "P492HX790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_37_E693HC790",
+      "licensePlate": "E693HC790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_38_B684MK750",
+      "licensePlate": "B684MK750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_39_C998KC750",
+      "licensePlate": "C998KC750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_40_C997KC750",
+      "licensePlate": "C997KC750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_41_A363TM790",
+      "licensePlate": "A363TM790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_42_T125TM790",
+      "licensePlate": "T125TM790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_43_T159TM790",
+      "licensePlate": "T159TM790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_44_K060TM790",
+      "licensePlate": "K060TM790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_45_Y070PT750",
+      "licensePlate": "Y070PT750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_46_K810CK790",
+      "licensePlate": "K810CK790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_47_A554CK790",
+      "licensePlate": "A554CK790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_48_S370XP790",
+      "licensePlate": "S370XP790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_49_O052XC790",
+      "licensePlate": "O052XC790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_50_H208AC790",
+      "licensePlate": "H208AC790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_51_P104AY790",
+      "licensePlate": "P104AY790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_52_T386HT790",
+      "licensePlate": "T386HT790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_53_P163AY750",
+      "licensePlate": "P163AY750"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_54_B660KY790",
+      "licensePlate": "B660KY790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_55_B041CX790",
+      "licensePlate": "B041CX790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_56_B804CA790",
+      "licensePlate": "B804CA790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_57_H283XT790",
+      "licensePlate": "H283XT790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_58_O890AK790",
+      "licensePlate": "O890AK790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_59_M383XO790",
+      "licensePlate": "M383XO790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_60_Y211TH790",
+      "licensePlate": "Y211TH790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_61_K439TC790",
+      "licensePlate": "K439TC790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_62_K420TC790",
+      "licensePlate": "K420TC790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_63_K431TC790",
+      "licensePlate": "K431TC790"
+    },
+    {
+      "id": "car_agent_1750441067738_4yernb7_64_E101XO790",
+      "licensePlate": "E101XO790"
+    }
+  ],
+  "priceList": [
+    {
+      "serviceName": "Мойка фура 90 кубов (тягач + полуприцеп)",
+      "price": 1800,
+      "chemicalConsumption": 0
+    },
+    {
+      "serviceName": "Мойка тягача",
+      "price": 900,
+      "chemicalConsumption": 150
+    }
+  ],
+  "additionalPriceList": [
+    {
+      "serviceName": "радиатор",
+      "price": 660,
+      "chemicalConsumption": 300
+    },
+    {
+      "serviceName": "мойка внутри полуприцепа",
+      "price": 800,
+      "chemicalConsumption": 250
+    },
+    {
+      "serviceName": "Терка щётками 2 стороны прицепа ",
+      "price": 300,
+      "chemicalConsumption": 100
+    }
+  ],
+  "allowCustomServices": false
+}

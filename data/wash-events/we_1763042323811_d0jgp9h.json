@@ -1,0 +1,37 @@
+{
+  "id": "we_1763042323811_d0jgp9h",
+  "timestamp": "2025-11-13T13:58:43.811Z",
+  "vehicleNumber": "C622AH977",
+  "employeeIds": [
+    "emp_1762757468682_a072ahl"
+  ],
+  "paymentMethod": "aggregator",
+  "sourceId": "agg_ds",
+  "sourceName": "ДС (Дорожная сеть)",
+  "priceListName": "Летний (апрель-октябрь)",
+  "totalAmount": 595,
+  "netAmount": 595,
+  "acquiringFee": 0,
+  "services": {
+    "main": {
+      "serviceName": "Мойка тягача типа Евро - категория 1",
+      "price": 595,
+      "chemicalConsumption": 0,
+      "id": "service-Мойка тягача типа Евро - категория 1-1763042310846",
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1762757468682_a072ahl",
+          "amount": 300
+        }
+      ]
+    },
+    "additional": []
+  },
+  "driverComments": [
+    {
+      "text": "заглох как помыл нижний камулятор",
+      "authorId": "emp_manager_admin",
+      "date": "2025-11-13T14:54:22.007Z"
+    }
+  ]
+}

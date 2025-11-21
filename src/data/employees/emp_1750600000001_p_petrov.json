@@ -1,0 +1,11 @@
+
+{
+  "id": "emp_1750600000001_p_petrov",
+  "fullName": "Петров Петр Петрович",
+  "phone": "+7 (999) 987-65-43",
+  "paymentDetails": "Карта Тинькофф: 5536 0000 1111 2222",
+  "hasCar": false,
+  "username": "petrov_p",
+  "password": "password456",
+  "salarySchemeId": "scheme_1755717143027"
+}

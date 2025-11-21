@@ -1,0 +1,451 @@
+{
+  "id": "agg_ds",
+  "name": "ДС (Дорожная сеть)",
+  "companies": [],
+  "cars": [
+    {
+      "id": "car_agg_ds_1_Y333BB33",
+      "licensePlate": "Y333BB33"
+    },
+    {
+      "id": "car_agg_ds_2_T118OH152",
+      "licensePlate": "T118OH152"
+    },
+    {
+      "id": "car_agg_ds_3_Y298MH152",
+      "licensePlate": "Y298MH152"
+    },
+    {
+      "id": "car_agg_ds_4_L405502",
+      "licensePlate": "L405502"
+    },
+    {
+      "id": "car_agg_ds_5_P065MM977",
+      "licensePlate": "P065MM977"
+    },
+    {
+      "id": "car_agg_ds_6_M480PC797",
+      "licensePlate": "M480PC797"
+    },
+    {
+      "id": "car_agg_ds_7_C003PE152",
+      "licensePlate": "C003PE152"
+    },
+    {
+      "id": "car_agg_ds_8_M002KP67",
+      "licensePlate": "M002KP67"
+    },
+    {
+      "id": "car_agg_ds_9_O289OP790",
+      "licensePlate": "O289OP790"
+    },
+    {
+      "id": "car_agg_ds_10_C622AH977",
+      "licensePlate": "C622AH977"
+    }
+  ],
+  "priceLists": [
+    {
+      "name": "Летний (апрель-октябрь)",
+      "services": [
+        {
+          "serviceName": "Мойка фура Европа реф, контейнер, тент, (до 90 куб.м.) - категория 1",
+          "price": 1304,
+          "chemicalConsumption": 900
+        },
+        {
+          "serviceName": "Мойка фура Европа, тент (от 91 куб.м.) - категория 1",
+          "price": 1431,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка фура Америка, реф, контейнер, тент (до 90 куб.м.) - категория 1",
+          "price": 1431,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка фура Америка, тент (от 91 куб.м.) - категория 1",
+          "price": 1519,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка фуры \"Европа\", цистерна - категория 1",
+          "price": 1456,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка фуры \"Америка\", цистерна - категория 1",
+          "price": 1646,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка тягача типа Евро - категория 1",
+          "price": 595,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка тягача Америка - категория 1",
+          "price": 924,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка полуприцепа без тягача снаружи (до 90 куб. м.) - категория 1",
+          "price": 886,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка полуприцепа без тягача снаружи (от 91 куб. м.) - категория 1",
+          "price": 950,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка полуприцепа / фургона внутри (до 90 куб. м.) - категория 1",
+          "price": 620,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка полуприцепа / фургона внутри (от 91 куб. м.) - категория 1",
+          "price": 684,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка прицепа реф, тент - категория 1",
+          "price": 380,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Сан.обработка полуприцепа / фургона внутри (до 90 куб. м.) - категория 1",
+          "price": 886,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Сан.обработка полуприцепа / фургона внутри (от 91 куб. м.) - категория 1",
+          "price": 1013,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика (от 3,6 до 5 тонн) - категория 1",
+          "price": 658,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика (от 5,1 до 10 тонн) - категория 1",
+          "price": 861,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика (от 10,1 до 20 тонн) - категория 1",
+          "price": 1203,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика, цистерна - категория 1",
+          "price": 1203,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка автовоза - категория 1",
+          "price": 1393,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка кабины внутри - категория 1",
+          "price": 532,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка радиатора под давлением - категория 1",
+          "price": 430,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка двигателя грузового автомобиля - категория 1",
+          "price": 532,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка фуры Европа контейнеровоз (без контейнера) - категория 1",
+          "price": 1139,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка фуры Америка контейнеровоз (без контейнера) - категория 1",
+          "price": 1469,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка трала \"Европа\" (от 20м) - категория 1",
+          "price": 1291,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка трала \"Европа\" (до 19м) - категория 1",
+          "price": 1253,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика снаружи до 3,5 тонн - категория 1",
+          "price": 577,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика внутри до 3,5 тонн - категория 1",
+          "price": 301,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика внутри от 3,6 до 5 тонн - категория 1",
+          "price": 361,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика внутри от 5,1 до 10 тонн - категория 1",
+          "price": 481,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика внутри от 10,1 до 20 тонн - категория 1",
+          "price": 577,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка тонара/зерновоза \"Европа\" тягач + прицеп (2-х осный) - категория 1",
+          "price": 1524,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка тонара/зерновоза \"Европа\" тягач + прицеп (3-х осный) - категория 1",
+          "price": 1704,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка тонара/зерновоза \"Европа\" тягач + прицеп (4-х осный) - категория 1",
+          "price": 1794,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика, самосвал 3-х осный - категория 1",
+          "price": 1345,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика, самосвал 4-х осный - категория 1",
+          "price": 1794,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Самомойка 1 час - категория 1",
+          "price": 1000,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Самомойка 30 мин - категория 1",
+          "price": 500,
+          "chemicalConsumption": 0
+        }
+      ]
+    },
+    {
+      "name": "Зимний (ноябрь-март)",
+      "services": [
+        {
+          "serviceName": "Мойка фура Европа реф, контейнер, тент, (до 90 куб.м.) - категория 1",
+          "price": 1504,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка фура Европа, тент (от 91 куб.м.) - категория 1",
+          "price": 1431,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка фура Америка, реф, контейнер, тент (до 90 куб.м.) - категория 1",
+          "price": 1431,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка фура Америка, тент (от 91 куб.м.) - категория 1",
+          "price": 1519,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка фуры \"Европа\", цистерна - категория 1",
+          "price": 1456,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка фуры \"Америка\", цистерна - категория 1",
+          "price": 1646,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка тягача типа Евро - категория 1",
+          "price": 595,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка тягача Америка - категория 1",
+          "price": 924,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка полуприцепа без тягача снаружи (до 90 куб. м.) - категория 1",
+          "price": 886,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка полуприцепа без тягача снаружи (от 91 куб. м.) - категория 1",
+          "price": 950,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка полуприцепа / фургона внутри (до 90 куб. м.) - категория 1",
+          "price": 620,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка полуприцепа / фургона внутри (от 91 куб. м.) - категория 1",
+          "price": 684,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка прицепа реф, тент - категория 1",
+          "price": 380,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Сан.обработка полуприцепа / фургона внутри (до 90 куб. м.) - категория 1",
+          "price": 886,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Сан.обработка полуприцепа / фургона внутри (от 91 куб. м.) - категория 1",
+          "price": 1013,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика (от 3,6 до 5 тонн) - категория 1",
+          "price": 658,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика (от 5,1 до 10 тонн) - категория 1",
+          "price": 861,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика (от 10,1 до 20 тонн) - категория 1",
+          "price": 1203,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика, цистерна - категория 1",
+          "price": 1203,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка автовоза - категория 1",
+          "price": 1393,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка кабины внутри - категория 1",
+          "price": 532,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка радиатора под давлением - категория 1",
+          "price": 430,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка двигателя грузового автомобиля - категория 1",
+          "price": 532,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка фуры Европа контейнеровоз (без контейнера) - категория 1",
+          "price": 1139,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка фуры Америка контейнеровоз (без контейнера) - категория 1",
+          "price": 1469,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка трала \"Европа\" (от 20м) - категория 1",
+          "price": 1291,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка трала \"Европа\" (до 19м) - категория 1",
+          "price": 1253,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика снаружи до 3,5 тонн - категория 1",
+          "price": 577,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика внутри до 3,5 тонн - категория 1",
+          "price": 301,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика внутри от 3,6 до 5 тонн - категория 1",
+          "price": 361,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика внутри от 5,1 до 10 тонн - категория 1",
+          "price": 481,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика внутри от 10,1 до 20 тонн - категория 1",
+          "price": 577,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка тонара/зерновоза \"Европа\" тягач + прицеп (2-х осный) - категория 1",
+          "price": 1524,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка тонара/зерновоза \"Европа\" тягач + прицеп (3-х осный) - категория 1",
+          "price": 1704,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка тонара/зерновоза \"Европа\" тягач + прицеп (4-х осный) - категория 1",
+          "price": 1794,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика, самосвал 3-х осный - категория 1",
+          "price": 1345,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Мойка грузовика, самосвал 4-х осный - категория 1",
+          "price": 1794,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Самомойка 1 час - категория 1",
+          "price": 1000,
+          "chemicalConsumption": 0
+        },
+        {
+          "serviceName": "Самомойка 30 мин - категория 1",
+          "price": 500,
+          "chemicalConsumption": 0
+        }
+      ]
+    }
+  ],
+  "activePriceListName": "Летний (апрель-октябрь)",
+  "balance": -6367
+}

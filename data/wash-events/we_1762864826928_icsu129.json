@@ -1,0 +1,25 @@
+{
+  "id": "we_1762864826928_icsu129",
+  "timestamp": "2025-11-11T12:40:26.928Z",
+  "vehicleNumber": "O725CX797",
+  "employeeIds": [
+    "emp_1762864597448_9pmw8jj"
+  ],
+  "paymentMethod": "cash",
+  "totalAmount": 1800,
+  "netAmount": 1800,
+  "acquiringFee": 0,
+  "services": {
+    "main": {
+      "serviceName": "Фура (тягач европеец + полуприцеп)",
+      "price": 1800,
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1762864597448_9pmw8jj",
+          "amount": 1000
+        }
+      ]
+    },
+    "additional": []
+  }
+}

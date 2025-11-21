@@ -1,0 +1,10 @@
+{
+  "id": "emp_manager_admin",
+  "fullName": "Менеджер Про",
+  "phone": "+7 (000) 000-00-00",
+  "paymentDetails": "N/A",
+  "hasCar": false,
+  "username": "admin",
+  "password": "admin",
+  "salarySchemeId": "scheme_1755717143027"
+}

@@ -1,0 +1,165 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+# SSH connection settings
+env:
+  SSH_HOST: '80.93.62.130'
+  SSH_USER: 'root'
+  SSH_PORT: '22'
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build app
+        run: npm run build
+
+  deploy:
+    name: Deploy to server
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Wait for server to be accessible
+        run: |
+          echo "Waiting for server to be accessible..."
+          max_attempts=10
+          attempt=1
+          while [ $attempt -le $max_attempts ]; do
+            if timeout 5 bash -c "echo > /dev/tcp/${{ env.SSH_HOST }}/22" 2>/dev/null; then
+              echo "✅ Server is accessible!"
+              exit 0
+            fi
+            echo "Attempt $attempt/$max_attempts: Server not accessible, waiting 30 seconds..."
+            sleep 30
+            attempt=$((attempt + 1))
+          done
+          echo "❌ Server failed to become accessible after $max_attempts attempts"
+          exit 1
+
+      - name: Run deploy script on remote server over SSH
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ env.SSH_HOST }}
+          username: ${{ env.SSH_USER }}
+          timeout: 120s
+          use_insecure_cipher: false
+          key: |
+            -----BEGIN RSA PRIVATE KEY-----
+            MIIEowIBAAKCAQEAlswnnDLrxhRI7+RSDoq3w0qJ7NyNtwEetB1t2Mez8PdR/mMQ
+            yC0IklhrdFL2cQO6//faVKIP0/ya3yMiK/upw8kcWTVuxJwSR8k2Wm6gZ3/uCp/K
+            2EB52/C8MpizQSVHR+TgUyz/if1EUkdHvqHwQFCrUH/5wahuPjzK0Z/gN3+YZ+r1
+            09HDxotGfO/a4THwK42e/oofYB4ZOXCpGuIjqcez0nD5r1XUuLtkH7EBg+4aGbh4
+            kkl/NR2ablBkqMe5o3PKiqO5jMNTuBeYBVo6sp3v1NRKJj7ipPLd6+B1g1GakG0t
+            S9wMdFCh/t7wixzpSNNVell+4/526tkgJ6V5uQIDAQABAoIBAHAl/P9pz3dM9sGS
+            aIRwHiKbeOAzVyHXL2J80Ij8XJLFHLG4M27sLwfHwoKMgMOkJprfVfzDWkop/3Qb
+            yPo0/BijpPWji3GlMOM6fbXbuGfA+OPl2xHhQb+U1iI69nVoqA6L5Vl2icWyGfGn
+            GXBpNyhd1krUIocoIHUg+SXVZQdgNUmb61hjYAew2zCuvXPC4HwoHEqUNzN7F8Md
+            XwFsqdHOzUH25ipm+nSU4v9TZ77yaQM697COCiDq/2E5IRIqnodODPKI1/m1EkXM
+            1OFl7pTdJ5qVJaBfX1O91ev8sY41Bxus30a1JTTgoLnpaujyyJHC673IUVnZwGkY
+            e+iOhgECgYEAx+d7ZyiPTq5+VMVmBC0U4X9IHhqf1pHhqbM31RjmjhL8zflex216
+            YzdSm6R/FPEnxbC4pLJJ0anUn46uvv2Fn+JedrI3nBYiCmrgiQhk2QIfhSjEqlh/
+            HIN0y9F1KkbPrNiSISeptA7aeKg/FuucOHZl+dUyCLh19EQ6mU3soYkCgYEAwRz9
+            5CefBdU3As+ABBzixp2akX6gQkCUEepo+HyIVJ1oQ3Dia5BtLmy37YpvbHIH276M
+            w74EdDb9Qqlh5HhKes7HRrC/Qdv+vIX3XWeWcKeLkO6Ci3VmMPfuABFJi20L+YWU
+            hjVb8caOu+3MDLShGa1ehHZ4iqSSxafwKgZ6+rECgYB4LUJzvt+Adsh93/o3kn6W
+            HfXWGz1yOltGsPZkxsZ8LRAMJ9mB3OAR24VvClJX3a6CW351jLVyNT4c+iM1sKXv
+            e6A8jWF/FZM7XgtEdmZiS7N1UxAANJmeI61IhtCALPfWupAHHJgaJj/S/5qGBfjx
+            vMQLkM62jWZkBcyQs1cJuQKBgDh3XLnI6BPRi3tT5y/Mrna7AMZIS13z+hfe/gCi
+            kU6ElEccC+i92172xTU9BGWmVivn5MsblbvRlG5Yjto6XjTYn6ZI6jO8uxiu52y1
+            bGTWaNXhF+TlWBM7e6kjZOjS4ux8Jbi0g4UHtRa4arDQZEbYzclXxtlrU8td1rjD
+            GlSRAoGBAI/F/6Xl/8P7/m4jjNoANT2i/v1BMkOVCAiAr/yxlYQPj5LrtzH6aZoo
+            ZsUGafzwF5EOVXmu/S06sVM2b7nVa9J1B6wCRRZoU5lhdpPSpvNuimKjcF669uyz
+            c8HPRnb5z2WnmqBR5lxgx+PHOd/KvqF408FOOOPAjLhCk2WQpauZ
+            -----END RSA PRIVATE KEY-----
+          port: ${{ env.SSH_PORT }}
+          command_timeout: 30m
+          script: |
+            REPO_DIR=/opt/carwash \
+            COMPOSE_CMD="docker compose" \
+            nohup /opt/carwash/deploy.sh > /tmp/deploy.log 2>&1 &
+            DEPLOY_PID=$!
+            echo "Deploy started in background (PID: $DEPLOY_PID)"
+            echo "Waiting for deployment to complete..."
+            
+            # Wait up to 25 minutes for deployment
+            max_wait=1500
+            waited=0
+            while [ $waited -lt $max_wait ]; do
+              if ! ps -p $DEPLOY_PID > /dev/null 2>&1; then
+                echo "Deploy process finished"
+                break
+              fi
+              sleep 10
+              waited=$((waited + 10))
+              if [ $((waited % 60)) -eq 0 ]; then
+                echo "Still waiting... ($((waited / 60)) minutes elapsed)"
+              fi
+            done
+            
+            # Check if process is still running
+            if ps -p $DEPLOY_PID > /dev/null 2>&1; then
+              echo "⚠️ Deploy is still running after 25 minutes, checking status..."
+            fi
+            
+            # Show last 50 lines of deploy log
+            echo "=== Deploy log (last 50 lines) ==="
+            tail -50 /tmp/deploy.log || echo "No deploy log found"
+            
+            # Check if containers are running
+            echo "=== Container status ==="
+            cd /opt/carwash && docker compose ps || echo "Docker compose failed"
+
+      - name: Wait for application to be ready
+        run: |
+          echo "Waiting for application to start..."
+          max_attempts=30
+          attempt=1
+          while [ $attempt -le $max_attempts ]; do
+            if curl -f -s -o /dev/null --connect-timeout 5 http://${{ env.SSH_HOST }}:3000; then
+              echo "✅ Application is ready!"
+              exit 0
+            fi
+            echo "Attempt $attempt/$max_attempts: Application not ready yet, waiting 10 seconds..."
+            sleep 10
+            attempt=$((attempt + 1))
+          done
+          echo "❌ Application failed to start after $max_attempts attempts"
+          exit 1
+
+      - name: Health check
+        run: |
+          echo "Performing final health check..."
+          response=$(curl -s -o /dev/null -w "%{http_code}" --connect-timeout 10 http://${{ env.SSH_HOST }}:3000)
+          if [ "$response" = "200" ] || [ "$response" = "302" ] || [ "$response" = "301" ]; then
+            echo "✅ Health check passed! HTTP Status: $response"
+            echo "🌐 Application is available at: http://${{ env.SSH_HOST }}:3000"
+          else
+            echo "❌ Health check failed! HTTP Status: $response"
+            exit 1
+          fi
+
+

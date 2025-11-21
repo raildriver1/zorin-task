@@ -1,0 +1,101 @@
+
+{
+  "mainPriceList": [
+    {
+      "serviceName": "Седельный тягач (европеец)",
+      "price": 1100
+    },
+    {
+      "serviceName": "Полуприцеп (снаружи)",
+      "price": 1100
+    },
+    {
+      "serviceName": "Полуприцеп (внутри)",
+      "price": 850
+    },
+    {
+      "serviceName": "Фура (тягач европеец + полуприцеп)",
+      "price": 1800
+    },
+    {
+      "serviceName": "Фура (тягач американец + полуприцеп)",
+      "price": 2000
+    },
+    {
+      "serviceName": "Одиночка до 5 тонн (снаружи)",
+      "price": 900
+    },
+    {
+      "serviceName": "Одиночка до 5 тонн (внутри)",
+      "price": 800
+    },
+    {
+      "serviceName": "Одиночка до 10 тонн (снаружи)",
+      "price": 1100
+    },
+    {
+      "serviceName": "Одиночка до 10 тонн (внутри)",
+      "price": 800
+    },
+    {
+      "serviceName": "Одиночка до 15 тонн (снаружи)",
+      "price": 1100
+    },
+    {
+      "serviceName": "Одиночка до 15 тонн (внутри)",
+      "price": 800
+    },
+    {
+      "serviceName": "Паровоз (сцепка)",
+      "price": 2000
+    },
+    {
+      "serviceName": "Прицеп (снаружи)",
+      "price": 850
+    },
+    {
+      "serviceName": "Прицеп (внутри)",
+      "price": 700
+    },
+    {
+      "serviceName": "Седельный тягач (американец)",
+      "price": 1200
+    },
+    {
+      "serviceName": "Самосвал (одиночка)",
+      "price": 1500
+    },
+    {
+      "serviceName": "Самосвал большой (одиночка)",
+      "price": 1600
+    },
+    {
+      "serviceName": "Фура (тягач европеец + полуприцеп самосвал)",
+      "price": 2200
+    },
+    {
+      "serviceName": "Газель",
+      "price": 950
+    },
+    {
+      "serviceName": "Фургон",
+      "price": 850
+    }
+  ],
+  "additionalPriceList": [
+    {
+      "serviceName": "Двигатель грузовой",
+      "price": 850
+    },
+    {
+      "serviceName": "Радиатор грузовой",
+      "price": 660
+    },
+    {
+      "serviceName": "Терка щётками 2 стороны прицепа ",
+      "price": 300
+    }
+  ],
+  "allowCustomRetailServices": true,
+  "cardAcquiringPercentage": 1.2
+}

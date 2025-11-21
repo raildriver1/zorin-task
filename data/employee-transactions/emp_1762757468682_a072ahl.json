@@ -1,0 +1,18 @@
+[
+  {
+    "id": "txn_1763024101431_u9yhowh",
+    "employeeId": "emp_1762757468682_a072ahl",
+    "date": "2025-11-13T08:55:01.431Z",
+    "type": "payment",
+    "amount": 2298.6,
+    "description": "Выплата зарплаты за период"
+  },
+  {
+    "id": "txn_1763030442310_ye00eki",
+    "employeeId": "emp_1762757468682_a072ahl",
+    "date": "2025-11-13T10:40:42.310Z",
+    "type": "purchase",
+    "amount": 3000,
+    "description": "Выдача канистры химии (20 кг)"
+  }
+]

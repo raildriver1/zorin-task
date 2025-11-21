@@ -1,0 +1,29 @@
+{
+  "id": "agent_1763000000000_ivanov",
+  "name": "ООО",
+  "balance": 0,
+  "companies": [
+    {
+      "companyName": "ООО",
+      "ownerName": "Иван Иванов",
+      "managerSocialContact": "@ivan_ivanov_tg",
+      "accountantSocialContact": "@anna_buh_vk",
+      "customerName": "ООО 'Покупатель Плюс'",
+      "inn": "1234567890",
+      "kpp": "123450001",
+      "ogrnNumber": "1067746000000",
+      "ogrnDate": "23.01.2006",
+      "legalAddress": "г. Город, ул. Улица, д. 1, оф. 2",
+      "bankName": "ПАО СБЕРБАНК",
+      "settlementAccount": "40702810000000000000",
+      "correspondentAccount": "30101810000000000225",
+      "bik": "044525225",
+      "phone": "+7 (XXX) XXX-XX-XX",
+      "email": "company@example.com"
+    }
+  ],
+  "cars": [],
+  "priceList": [],
+  "additionalPriceList": [],
+  "allowCustomServices": true
+}

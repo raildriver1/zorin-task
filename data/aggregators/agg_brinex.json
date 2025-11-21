@@ -1,0 +1,23 @@
+{
+  "id": "agg_brinex",
+  "name": "Бринекс",
+  "companies": [],
+  "cars": [
+    {
+      "id": "car_agg_brinex_1_K439TC791",
+      "licensePlate": "K439TC791"
+    }
+  ],
+  "priceLists": [
+    {
+      "name": "Основной",
+      "services": [
+        {
+          "serviceName": "мока тягача + полу прицепа 90 куб ",
+          "price": 1
+        }
+      ]
+    }
+  ],
+  "activePriceListName": "Основной"
+}

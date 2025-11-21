@@ -1,0 +1,139 @@
+{
+  "id": "we_1762784010262_vplf4l6",
+  "timestamp": "2025-11-10T14:14:00.262Z",
+  "vehicleNumber": "Y298MH152",
+  "employeeIds": [
+    "emp_1762757468682_a072ahl"
+  ],
+  "paymentMethod": "aggregator",
+  "sourceId": "agg_ds",
+  "sourceName": "ДС (Дорожная сеть)",
+  "priceListName": "Летний (апрель-октябрь)",
+  "totalAmount": 1304,
+  "netAmount": 1304,
+  "acquiringFee": 0,
+  "services": {
+    "main": {
+      "serviceName": "Мойка фура Европа реф, контейнер, тент, (до 90 куб.м.) - категория 1",
+      "price": 1304,
+      "chemicalConsumption": 0,
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1762757468682_a072ahl",
+          "amount": 400
+        }
+      ]
+    },
+    "additional": []
+  },
+  "editHistory": [
+    {
+      "editedAt": "2025-11-10T19:14:45.440Z",
+      "editedBy": "emp_manager_admin",
+      "previousState": {
+        "id": "we_1762784010262_vplf4l6",
+        "timestamp": "2025-11-10T14:13:00.262Z",
+        "vehicleNumber": "Y298MH152",
+        "employeeIds": [
+          "emp_1762757468682_a072ahl"
+        ],
+        "paymentMethod": "aggregator",
+        "sourceId": "agg_ds",
+        "sourceName": "ДС (Дорожная сеть)",
+        "priceListName": "Летний (апрель-октябрь)",
+        "totalAmount": 924,
+        "netAmount": 924,
+        "acquiringFee": 0,
+        "services": {
+          "main": {
+            "serviceName": "Мойка тягача Америка - категория 1",
+            "price": 924,
+            "chemicalConsumption": 0
+          },
+          "additional": []
+        }
+      }
+    },
+    {
+      "editedAt": "2025-11-10T19:16:48.116Z",
+      "editedBy": "emp_manager_admin",
+      "previousState": {
+        "id": "we_1762784010262_vplf4l6",
+        "timestamp": "2025-11-10T14:13:00.262Z",
+        "vehicleNumber": "Y298MH152",
+        "employeeIds": [
+          "emp_1762757468682_a072ahl"
+        ],
+        "paymentMethod": "aggregator",
+        "sourceId": "agg_ds",
+        "sourceName": "ДС (Дорожная сеть)",
+        "priceListName": "Летний (апрель-октябрь)",
+        "totalAmount": 1431,
+        "netAmount": 1431,
+        "acquiringFee": 0,
+        "services": {
+          "main": {
+            "serviceName": "Мойка фура Европа, тент (от 91 куб.м.) - категория 1",
+            "price": 1431,
+            "chemicalConsumption": 0
+          },
+          "additional": []
+        }
+      }
+    },
+    {
+      "editedAt": "2025-11-10T19:20:13.118Z",
+      "editedBy": "emp_manager_admin",
+      "previousState": {
+        "id": "we_1762784010262_vplf4l6",
+        "timestamp": "2025-11-10T14:14:00.262Z",
+        "vehicleNumber": "Y298MH152",
+        "employeeIds": [
+          "emp_1762757468682_a072ahl"
+        ],
+        "paymentMethod": "aggregator",
+        "sourceId": "agg_ds",
+        "sourceName": "ДС (Дорожная сеть)",
+        "priceListName": "Летний (апрель-октябрь)",
+        "totalAmount": 950,
+        "netAmount": 950,
+        "acquiringFee": 0,
+        "services": {
+          "main": {
+            "serviceName": "Мойка полуприцепа без тягача снаружи (от 91 куб. м.) - категория 1",
+            "price": 950,
+            "chemicalConsumption": 0
+          },
+          "additional": []
+        }
+      }
+    },
+    {
+      "editedAt": "2025-11-10T19:23:39.661Z",
+      "editedBy": "emp_manager_admin",
+      "previousState": {
+        "id": "we_1762784010262_vplf4l6",
+        "timestamp": "2025-11-10T14:14:00.262Z",
+        "vehicleNumber": "Y298MH152",
+        "employeeIds": [
+          "emp_1762757468682_a072ahl"
+        ],
+        "paymentMethod": "aggregator",
+        "sourceId": "agg_ds",
+        "sourceName": "ДС (Дорожная сеть)",
+        "priceListName": "Летний (апрель-октябрь)",
+        "totalAmount": 1704,
+        "netAmount": 1704,
+        "acquiringFee": 0,
+        "services": {
+          "main": {
+            "serviceName": "Мойка тонара/зерновоза \"Европа\" тягач + прицеп (3-х осный) - категория 1",
+            "price": 1704,
+            "chemicalConsumption": 0
+          },
+          "additional": []
+        }
+      }
+    }
+  ]
+}

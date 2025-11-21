@@ -1,0 +1,26 @@
+{
+  "id": "we_1762782089418_ca3va3i",
+  "timestamp": "2025-11-10T13:41:29.418Z",
+  "vehicleNumber": "P487TX33",
+  "employeeIds": [
+    "emp_1762757468682_a072ahl"
+  ],
+  "paymentMethod": "cash",
+  "totalAmount": 1400,
+  "netAmount": 1400,
+  "acquiringFee": 0,
+  "services": {
+    "main": {
+      "serviceName": "Фура (тягач европеец + полуприцеп шаланда открытый)",
+      "price": 1400,
+      "chemicalConsumption": 600,
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1762757468682_a072ahl",
+          "amount": 400
+        }
+      ]
+    },
+    "additional": []
+  }
+}
