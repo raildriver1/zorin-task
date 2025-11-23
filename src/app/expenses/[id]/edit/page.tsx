@@ -6,22 +6,7 @@ import { ExpenseForm } from '../../components/ExpenseForm';
 import type { Expense } from '@/types';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertTriangle } from 'lucide-react';
-
-async function getExpenseById(id: string): Promise<Expense | null> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:9002'}/api/expenses/${id}`, { cache: 'no-store' });
-  if (!res.ok) {
-    if (res.status === 404) {
-      return null;
-    }
-    throw new Error(`Failed to fetch expense with ID ${id}: ${res.statusText}`);
-  }
-  try {
-    return await res.json();
-  } catch (e) {
-    console.error("Failed to parse expense JSON:", e);
-    throw new Error(`Failed to parse expense data for ID ${id}`);
-  }
-}
+import { getExpenseById } from '@/lib/data-loader';
 
 export default async function EditExpensePage({ params }: { params: { id: string } }) {
   const expenseId = params.id;
@@ -30,6 +15,9 @@ export default async function EditExpensePage({ params }: { params: { id: string
 
   try {
     expense = await getExpenseById(expenseId);
+    if (!expense) {
+      fetchError = `Расход с ID "${expenseId}" не найден.`;
+    }
   } catch (error: any) {
     fetchError = error.message || `Не удалось загрузить данные для расхода с ID ${expenseId}.`;
   }

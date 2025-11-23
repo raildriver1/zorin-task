@@ -47,15 +47,18 @@ export async function POST(request: Request) {
        return NextResponse.json({ error: 'Expense ID is required' }, { status: 400 });
     }
 
-    // Corrected logic: ADD to inventory on purchase
-    if (newExpense.category === 'Закупка химии' && newExpense.unit === 'кг' && newExpense.quantity) {
-        const amountInGrams = newExpense.quantity * 1000;
-        await updateInventory(amountInGrams); // Use positive value
-    }
-    
     const filePath = path.join(dataDir, `${newExpense.id}.json`);
+
+    // Write expense file FIRST - if this fails, inventory won't be updated
     await fs.writeFile(filePath, JSON.stringify(newExpense, null, 2), 'utf-8');
     invalidateExpensesCache();
+
+    // Only update inventory after expense is successfully saved
+    if (newExpense.category === 'Закупка химии' && newExpense.unit === 'кг' && newExpense.quantity) {
+        const amountInGrams = newExpense.quantity * 1000;
+        await updateInventory(amountInGrams);
+    }
+
     return NextResponse.json({ message: 'Expense created successfully', expense: newExpense }, { status: 201 });
   } catch (error) {
     console.error('Error creating expense:', error);

@@ -27,9 +27,9 @@ export async function invalidateSalarySchemesCache() { salarySchemesCache = null
 export async function invalidateRetailPriceConfigCache() { retailPriceConfigCache = null; }
 export async function invalidateExpensesCache() { expensesCache = null; }
 export async function invalidateInventoryCache() { inventoryCache = null; }
-export async function invalidateEmployeeTransactionsCache(employeeId: string) { 
+export async function invalidateEmployeeTransactionsCache(employeeId: string) {
     employeeTransactionsCache.delete(employeeId);
-    allEmployeeTransactionsCache = null; 
+    allEmployeeTransactionsCache = null;
 }
 export async function invalidateAllEmployeeTransactionsCache() {
     allEmployeeTransactionsCache = null;
@@ -189,6 +189,31 @@ export async function getClientTransactions(clientId: string): Promise<ClientTra
 export async function getEmployeeById(id: string): Promise<Employee | null> {
     const employees = await getEmployeesData(); // This will use the cache
     return employees.find(e => e.id === id) || null;
+}
+
+export async function getCounterAgentById(id: string): Promise<CounterAgent | null> {
+    const agents = await getCounterAgentsData();
+    return agents.find(a => a.id === id) || null;
+}
+
+export async function getAggregatorById(id: string): Promise<Aggregator | null> {
+    const aggregators = await getAggregatorsData();
+    return aggregators.find(a => a.id === id) || null;
+}
+
+export async function getExpenseById(id: string): Promise<Expense | null> {
+    const expenses = await getExpensesData();
+    return expenses.find(e => e.id === id) || null;
+}
+
+export async function getWashEventById(id: string): Promise<WashEvent | null> {
+    const events = await getWashEventsData();
+    return events.find(e => e.id === id) || null;
+}
+
+export async function getSalarySchemeById(id: string): Promise<SalaryScheme | null> {
+    const schemes = await getSalarySchemesData();
+    return schemes.find(s => s.id === id) || null;
 }
 
 // Special function for retail price list since it's a single file

@@ -82,12 +82,16 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     }
 
     const inventoryChange = newChemicalAmountGrams - oldChemicalAmountGrams;
+
+    // Write file FIRST - if this fails, inventory won't be updated
+    await fs.writeFile(filePath, JSON.stringify(updatedData, null, 2), 'utf-8');
+    invalidateExpensesCache();
+
+    // Only update inventory after file is successfully written
     if (inventoryChange !== 0) {
         await updateInventory(inventoryChange);
     }
 
-    await fs.writeFile(filePath, JSON.stringify(updatedData, null, 2), 'utf-8');
-    invalidateExpensesCache();
     return NextResponse.json({ message: 'Data updated successfully', expense: updatedData });
   } catch (error) {
     console.error(`Error writing expense data for ID ${id}:`, error);
@@ -117,13 +121,14 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
        else return NextResponse.json({ error: 'Expense not found' }, { status: 404 });
     }
 
-    await fs.unlink(filePath);
-    invalidateExpensesCache();
-    
-    // Corrected logic: SUBTRACT from inventory on deletion of a purchase
+    // Update inventory FIRST - if this fails, we don't delete the file
     if (chemicalAmountToSubtractGrams > 0) {
         await updateInventory(-chemicalAmountToSubtractGrams);
     }
+
+    // Only delete file after inventory is successfully updated
+    await fs.unlink(filePath);
+    invalidateExpensesCache();
 
     return NextResponse.json({ message: 'Expense deleted successfully' });
   } catch (error: any) {

@@ -96,15 +96,15 @@ export function ClientFinanceDashboard({ client, washEvents, initialTransactions
 
         const initialBalance = client.balance ?? 0;
         // To find the balance at the start of the period, we reverse the operations that happened AFTER the period started.
-        // Simplified: Start with current balance and add back all charges and subtract all payments that occurred after the period began.
+        // Charges increase debt, so we subtract them to reverse. Payments decrease debt, so we add them to reverse.
         const chargesWithinOrAfterPeriod = allWashEntries
             .filter(e => e.date >= periodStart)
             .reduce((sum, e) => sum + e.debit, 0);
         const paymentsWithinOrAfterPeriod = allPaymentEntries
             .filter(e => e.date >= periodStart)
             .reduce((sum, e) => sum + e.credit, 0);
-        
-        const balanceAtStartOfPeriod = initialBalance + chargesWithinOrAfterPeriod - paymentsWithinOrAfterPeriod;
+
+        const balanceAtStartOfPeriod = initialBalance - chargesWithinOrAfterPeriod + paymentsWithinOrAfterPeriod;
 
         // Calculate running balance for the journal
         let runningBalance = balanceAtStartOfPeriod;

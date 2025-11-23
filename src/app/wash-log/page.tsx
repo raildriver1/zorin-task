@@ -104,11 +104,11 @@ export default async function WashLogPage({
   const employeeMap = new Map(employees.map(e => [e.id, e.fullName]));
   
   const filteredEvents = allWashEvents.filter(event => {
-    const normalizedQuery = query.toLowerCase();
-    const normalizedVehicleNumber = normalizeLicensePlate(event.vehicleNumber).toLowerCase();
+    const normalizedQuery = normalizeLicensePlate(query);
+    const normalizedVehicleNumber = normalizeLicensePlate(event.vehicleNumber);
     const clientName = (event.sourceName || paymentMethodTranslations[event.paymentMethod]).toLowerCase();
 
-    return normalizedVehicleNumber.includes(normalizeLicensePlate(normalizedQuery)) || clientName.includes(normalizedQuery);
+    return normalizedVehicleNumber.includes(normalizedQuery) || clientName.includes(query.toLowerCase());
   });
   
   // Calculate today's summary

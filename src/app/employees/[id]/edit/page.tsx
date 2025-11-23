@@ -6,22 +6,7 @@ import { EmployeeForm } from '../../components/EmployeeForm';
 import type { Employee } from '@/types';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertTriangle } from 'lucide-react';
-
-async function getEmployeeById(id: string): Promise<Employee | null> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:9002'}/api/employees/${id}`, { cache: 'no-store' });
-  if (!res.ok) {
-    if (res.status === 404) {
-      return null;
-    }
-    throw new Error(`Failed to fetch employee with ID ${id}: ${res.statusText}`);
-  }
-  try {
-    return await res.json();
-  } catch (e) {
-    console.error("Failed to parse employee JSON:", e);
-    throw new Error(`Failed to parse employee data for ID ${id}`);
-  }
-}
+import { getEmployeeById } from '@/lib/data-loader';
 
 export default async function EditEmployeePage({ params }: { params: { id: string } }) {
   const employeeId = params.id;
@@ -30,6 +15,9 @@ export default async function EditEmployeePage({ params }: { params: { id: strin
 
   try {
     employee = await getEmployeeById(employeeId);
+    if (!employee) {
+      fetchError = `Сотрудник с ID "${employeeId}" не найден.`;
+    }
   } catch (error: any) {
     fetchError = error.message || `Не удалось загрузить данные для сотрудника с ID ${employeeId}.`;
   }

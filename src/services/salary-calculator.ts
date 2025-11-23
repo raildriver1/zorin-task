@@ -36,11 +36,11 @@ function calculateIndividualShare(
 
   if (employeeScheme.type === 'percentage') {
     // For percentage-based schemes:
-    const totalBaseAmount = washEvent.netAmount ?? washEvent.totalAmount;
+    const totalBaseAmount = washEvent.netAmount !== undefined ? washEvent.netAmount : washEvent.totalAmount;
     const totalAmountAfterDeduction = totalBaseAmount - (employeeScheme.fixedDeduction ?? 0);
     const totalSalaryPool = totalAmountAfterDeduction * ((employeeScheme.percentage ?? 0) / 100);
     const earning = totalSalaryPool / numEmployeesOnWash;
-    
+
     result.earnings = earning > 0 ? parseFloat(earning.toFixed(2)) : 0;
     return result;
   }
@@ -78,7 +78,10 @@ function calculateIndividualShare(
         const earningForService = (rateItem.rate ?? 0) - (rateItem.deduction ?? 0);
         totalRateForWash += earningForService > 0 ? earningForService : 0;
       } else if (!rateItem || rateItem.rate <= 0) {
-        result.unpaidServices.push(service.serviceName);
+        // Avoid duplicates in unpaidServices array
+        if (!result.unpaidServices.includes(service.serviceName)) {
+          result.unpaidServices.push(service.serviceName);
+        }
       }
     }
 

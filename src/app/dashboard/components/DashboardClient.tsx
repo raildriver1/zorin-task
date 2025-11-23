@@ -111,7 +111,7 @@ export function DashboardClient({
     }, [initialWashEvents, initialExpenses, initialEmployeeTransactions, selectedDateRange]);
     
     // --- Metrics Calculations ---
-    const totalRevenue = filteredWashEvents.reduce((sum, event) => sum + (event.netAmount ?? event.totalAmount), 0);
+    const totalRevenue = filteredWashEvents.reduce((sum, event) => sum + (event.netAmount !== undefined ? event.netAmount : event.totalAmount), 0);
     const totalWashes = filteredWashEvents.length;
     
     const operationalExpenses = filteredExpenses.reduce((sum, exp) => sum + exp.amount, 0);

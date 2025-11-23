@@ -6,22 +6,7 @@ import { AggregatorForm } from '../../components/AggregatorForm';
 import type { Aggregator } from '@/types';
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertTriangle } from 'lucide-react';
-
-async function getAggregatorById(id: string): Promise<Aggregator | null> {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:9002'}/api/aggregators/${id}`, { cache: 'no-store' });
-  if (!res.ok) {
-    if (res.status === 404) {
-      return null;
-    }
-    throw new Error(`Failed to fetch aggregator with ID ${id}: ${res.statusText}`);
-  }
-  try {
-    return await res.json();
-  } catch (e) {
-    console.error("Failed to parse aggregator JSON:", e);
-    throw new Error(`Failed to parse aggregator data for ID ${id}`);
-  }
-}
+import { getAggregatorById } from '@/lib/data-loader';
 
 export default async function EditAggregatorPage({ params }: { params: { id: string } }) {
   const aggregatorId = params.id;
@@ -30,6 +15,9 @@ export default async function EditAggregatorPage({ params }: { params: { id: str
 
   try {
     aggregator = await getAggregatorById(aggregatorId);
+    if (!aggregator) {
+      fetchError = `Агрегатор с ID "${aggregatorId}" не найден.`;
+    }
   } catch (error: any) {
     fetchError = error.message || `Не удалось загрузить данные для агрегатора с ID ${aggregatorId}.`;
   }

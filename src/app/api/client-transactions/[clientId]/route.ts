@@ -99,13 +99,14 @@ export async function POST(request: Request, { params }: { params: { clientId: s
       amount: amountToAdd,
       description: newTransactionData.description,
     };
-    
+
     currentTransactions.push(transactionToSave);
-    
-    await writeTransactions(clientId, currentTransactions);
-    
-    // We are adding a payment, so the balance increases.
+
+    // Update balance FIRST - if this fails, we don't write the transaction file
     await updateClientBalance(clientId, amountToAdd, request);
+
+    // Only write transactions after balance is successfully updated
+    await writeTransactions(clientId, currentTransactions);
 
     return NextResponse.json({ message: 'Transaction added successfully', transaction: transactionToSave }, { status: 201 });
 
@@ -137,9 +138,10 @@ export async function DELETE(request: Request, { params }: { params: { clientId:
 
     transactions = transactions.filter(t => t.id !== transactionId);
 
-    // Deleting a payment means the balance decreases.
+    // Update balance FIRST - if this fails, we don't write the updated transactions
     await updateClientBalance(clientId, -transactionToDelete.amount, request);
 
+    // Only write transactions after balance is successfully updated
     await writeTransactions(clientId, transactions);
 
     return NextResponse.json({ message: 'Transaction deleted successfully' });

@@ -6,25 +6,17 @@ import type { WashEvent, Employee, CounterAgent, Aggregator, RetailPriceConfig }
 import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
 import { AlertTriangle } from 'lucide-react';
 import { WashEventForm } from '../../components/WashEventForm';
-import { getEmployeesData, getCounterAgentsData, getAggregatorsData, getRetailPriceConfig } from '@/lib/data-loader';
+import { getEmployeesData, getCounterAgentsData, getAggregatorsData, getRetailPriceConfig, getWashEventById } from '@/lib/data-loader';
 
 async function fetchData(eventId: string) {
-    const washEventRes = await fetch(`${process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:9002'}/api/wash-events/${eventId}`, { cache: 'no-store' });
-
-    if (!washEventRes.ok) {
-        if (washEventRes.status === 404) return { washEvent: null };
-        throw new Error('Не удалось загрузить данные о мойке.');
-    }
-    
-    const washEvent: WashEvent = await washEventRes.json();
-    
-    const [employees, counterAgents, aggregators, retailPriceConfig] = await Promise.all([
+    const [washEvent, employees, counterAgents, aggregators, retailPriceConfig] = await Promise.all([
+        getWashEventById(eventId),
         getEmployeesData(),
         getCounterAgentsData(),
         getAggregatorsData(),
         getRetailPriceConfig()
     ]);
-    
+
     return { washEvent, employees, counterAgents, aggregators, retailPriceConfig };
 }
 
