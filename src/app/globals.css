@@ -1,6 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import '../styles/zorin-sidebar.css';
+@import '../styles/zorin-dashboard.css';
+@import '../styles/zorin-workstation.css';
+@import '../styles/wash-log.css';
 
 body {
   font-family: Arial, Helvetica, sans-serif; /* Overridden by tailwind config and layout */

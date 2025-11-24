@@ -3,28 +3,36 @@
 import type { ReactNode } from 'react';
 import React from 'react';
 import Link from 'next/link';
-import {
-  Sidebar,
-  SidebarHeader,
-  SidebarContent,
-  SidebarInset,
-  SidebarTrigger,
-  useSidebar,
-} from '@/components/ui/sidebar';
 import { Button } from '@/components/ui/button';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { Settings, WashingMachine, LogOut } from 'lucide-react';
-import { MainNavigation } from './MainNavigation';
+import { Settings, Menu } from 'lucide-react';
+import { ZorinSidebar } from './ZorinSidebar';
 import { useAuth } from '@/contexts/AuthContext';
 import { usePathname } from 'next/navigation';
 import { Loader2 } from 'lucide-react';
+import { useState } from 'react';
+import { cn } from '@/lib/utils';
 
 export function AppLayout({ children, newServicesCount = 0 }: { children: ReactNode, newServicesCount?: number }) {
-  const { open: sidebarOpen, isMobile, state: sidebarState } = useSidebar();
   const { isAuthenticated, employee, isLoading, logout } = useAuth();
   const pathname = usePathname();
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isMobile, setIsMobile] = useState(false);
 
-  const sidebarIsEffectivelyOpen = isMobile ? sidebarOpen : sidebarState === 'expanded';
+  // Handle mobile detection
+  React.useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+      if (window.innerWidth < 768) {
+        setIsSidebarOpen(false);
+      }
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const sidebarIsEffectivelyOpen = isMobile ? isSidebarOpen : isSidebarOpen;
   
   if (isLoading) {
     return (
@@ -57,42 +65,73 @@ export function AppLayout({ children, newServicesCount = 0 }: { children: ReactN
   
   // For the main manager layout
   return (
-    <div className="flex min-h-screen bg-background">
-      <Sidebar collapsible="icon" variant="sidebar" side="left">
-        <SidebarHeader className="p-4 flex items-center justify-between">
-          <Link href="/dashboard" className="flex items-center gap-2 overflow-hidden">
-            <WashingMachine className="h-8 w-8 text-primary shrink-0" />
-            {sidebarIsEffectivelyOpen && <h1 className="font-headline text-xl font-semibold text-sidebar-foreground truncate">АвтомойкаПро</h1>}
-          </Link>
-          {!isMobile && sidebarState === 'collapsed' && (
-             <div className="w-8"></div>
-          )}
-        </SidebarHeader>
-        <ScrollArea className="flex-grow">
-          <SidebarContent>
-            <MainNavigation onLogout={logout} newServicesCount={newServicesCount} />
-          </SidebarContent>
-        </ScrollArea>
-      </Sidebar>
-      <SidebarInset className="flex-1 flex flex-col">
-        <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b bg-background/90 px-4 backdrop-blur-sm md:px-6">
-          <div className="md:hidden">
-            <SidebarTrigger />
+    <div className="flex min-h-screen bg-gray-50">
+      {/* ZORIN Styled Sidebar - Fixed Position */}
+      <div className={cn(
+        "fixed left-0 top-0 h-full z-50 transition-all duration-300",
+        isMobile ? (isSidebarOpen ? "translate-x-0" : "-translate-x-full") : "translate-x-0"
+      )}>
+        <ZorinSidebar
+          onLogout={logout}
+          newServicesCount={newServicesCount}
+          isOpen={sidebarIsEffectivelyOpen}
+          onToggle={() => setIsSidebarOpen(!isSidebarOpen)}
+        />
+      </div>
+
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col zorin-main-content transition-all duration-300"
+           style={{ marginLeft: isMobile ? 0 : (sidebarIsEffectivelyOpen ? '280px' : '80px') }}>
+
+        {/* Top Bar */}
+        <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b bg-white/90 px-4 backdrop-blur-sm md:px-6 shadow-sm">
+          <div className="flex items-center gap-4">
+            {/* Mobile Menu Toggle */}
+            <button
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              className="lg:hidden p-2 rounded-md hover:bg-gray-100 transition-colors"
+              aria-label="Toggle sidebar"
+            >
+              <Menu className="h-5 w-5" />
+            </button>
+
+            {/* Desktop Menu Toggle */}
+            <button
+              onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+              className="hidden lg:flex p-2 rounded-md hover:bg-gray-100 transition-colors"
+              aria-label="Toggle sidebar"
+            >
+              <Menu className="h-5 w-5" />
+            </button>
           </div>
-          <div className="flex-1">
-            {/* Breadcrumbs or dynamic page title could go here */}
-          </div>
-          <div>
-            {/* User menu, notifications, etc. */}
+
+          <div className="flex items-center gap-4">
+            {employee && (
+              <span className="text-sm text-gray-600 hidden sm:inline">
+                {employee.fullName}
+              </span>
+            )}
+
+            {/* Settings Button */}
             <Button variant="ghost" size="icon" aria-label="Настройки">
               <Settings className="h-5 w-5" />
             </Button>
           </div>
         </header>
-        <main className="flex-1 overflow-y-auto p-4 md:p-6">
+
+        {/* Main Content */}
+        <main className="flex-1 overflow-y-auto p-4 md:p-6 bg-gray-50">
           {children}
         </main>
-      </SidebarInset>
+      </div>
+
+      {/* Mobile Sidebar Overlay */}
+      {isMobile && isSidebarOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+          onClick={() => setIsSidebarOpen(false)}
+        />
+      )}
     </div>
   );
 }

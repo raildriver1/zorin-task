@@ -1,8 +1,7 @@
 
 export const dynamic = 'force-dynamic';
 
-import PageHeader from '@/components/layout/PageHeader';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import "@/styles/invoices.css";
 import { AlertTriangle } from 'lucide-react';
 import { getCounterAgentsData, getWashEventsData, getAggregatorsData } from '@/lib/data-loader';
 import { InvoiceGenerator } from './components/InvoiceGenerator';
@@ -40,29 +39,44 @@ export default async function InvoicesPage() {
 
     if (error) {
         return (
-            <div className="container mx-auto py-8">
-                <PageHeader title="Счета для клиентов" description="Ошибка загрузки данных." />
-                <Alert variant="destructive" className="max-w-xl mx-auto">
-                    <AlertTriangle className="h-4 w-4" />
-                    <AlertTitle>Ошибка Загрузки</AlertTitle>
-                    <AlertDescription>{error}</AlertDescription>
-                </Alert>
+            <div className="invoices">
+                <div className="page-header-section">
+                    <div className="page-header-content">
+                        <div className="page-title-section">
+                            <h1>Счета для клиентов</h1>
+                            <p>Ошибка загрузки данных.</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="alert error">
+                    <AlertTriangle className="h-5 w-5" />
+                    <div>
+                        <div className="alert-title">Ошибка Загрузки</div>
+                        <div className="alert-description">{error}</div>
+                    </div>
+                </div>
             </div>
         );
     }
-    
+
     return (
-        <div className="container mx-auto py-4 md:py-8">
-            <PageHeader
-                title="Счета для клиентов"
-                description="Формирование и печать актов выполненных работ для корпоративных клиентов и агрегаторов."
-            />
-            <InvoiceGenerator 
-                counterAgents={counterAgents}
-                aggregators={aggregators}
-                washEvents={washEvents}
-                myCompanyDetails={myCompanyDetails}
-            />
+        <div className="invoices">
+            <div className="page-header-section">
+                <div className="page-header-content">
+                    <div className="page-title-section">
+                        <h1>Счета для клиентов</h1>
+                        <p>Формирование и печать актов выполненных работ для корпоративных клиентов и агрегаторов.</p>
+                    </div>
+                </div>
+            </div>
+            <div className="invoice-generator">
+                <InvoiceGenerator
+                    counterAgents={counterAgents}
+                    aggregators={aggregators}
+                    washEvents={washEvents}
+                    myCompanyDetails={myCompanyDetails}
+                />
+            </div>
         </div>
     );
 }

@@ -1,8 +1,7 @@
 
 export const dynamic = 'force-dynamic';
 
-import PageHeader from '@/components/layout/PageHeader';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import "@/styles/inventory.css";
 import { AlertTriangle } from 'lucide-react';
 import { getWashEventsData, getExpensesData, getInventory, getAllEmployeeTransactions, getEmployeesData } from '@/lib/data-loader';
 import { InventoryDashboard } from './components/InventoryDashboard';
@@ -38,30 +37,45 @@ export default async function InventoryPage() {
 
     if (error) {
         return (
-            <div className="container mx-auto py-8">
-                <PageHeader title="Склад" description="Ошибка загрузки данных." />
-                <Alert variant="destructive" className="max-w-xl mx-auto">
-                    <AlertTriangle className="h-4 w-4" />
-                    <AlertTitle>Ошибка Загрузки</AlertTitle>
-                    <AlertDescription>{error}</AlertDescription>
-                </Alert>
+            <div className="inventory">
+                <div className="page-header-section">
+                    <div className="page-header-content">
+                        <div className="page-title-section">
+                            <h1>Склад</h1>
+                            <p>Ошибка загрузки данных.</p>
+                        </div>
+                    </div>
+                </div>
+                <div className="alert error">
+                    <AlertTriangle className="h-5 w-5" />
+                    <div>
+                        <div className="alert-title">Ошибка Загрузки</div>
+                        <div className="alert-description">{error}</div>
+                    </div>
+                </div>
             </div>
         );
     }
-    
+
     return (
-        <div className="container mx-auto py-4 md:py-8">
-            <PageHeader
-                title="Склад"
-                description="Управление запасами и отслеживание движения химических средств."
-            />
-            <InventoryDashboard
-                inventory={inventory}
-                allWashEvents={washEvents}
-                allExpenses={expenses}
-                allEmployeeTransactions={employeeTransactions}
-                employees={employees}
-            />
+        <div className="inventory">
+            <div className="page-header-section">
+                <div className="page-header-content">
+                    <div className="page-title-section">
+                        <h1>Склад</h1>
+                        <p>Управление запасами и отслеживание движения химических средств.</p>
+                    </div>
+                </div>
+            </div>
+            <div className="inventory-dashboard">
+                <InventoryDashboard
+                    inventory={inventory}
+                    allWashEvents={washEvents}
+                    allExpenses={expenses}
+                    allEmployeeTransactions={employeeTransactions}
+                    employees={employees}
+                />
+            </div>
         </div>
     );
 }

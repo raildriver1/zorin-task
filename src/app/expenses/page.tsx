@@ -1,16 +1,9 @@
-
 export const dynamic = 'force-dynamic';
 
+import "@/styles/expenses.css";
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import PageHeader from '@/components/layout/PageHeader';
-import { PlusCircle, Edit, ShoppingCart, TrendingUp, Scale, Droplets } from 'lucide-react';
+import { PlusCircle, Edit, ShoppingCart, TrendingUp, Scale, Droplets, AlertTriangle } from 'lucide-react';
 import type { Expense, WashEvent } from '@/types';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { AlertTriangle } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { DeleteConfirmationButton } from '@/components/common/DeleteConfirmationButton';
@@ -28,8 +21,7 @@ export default async function ExpensesPage() {
         getWashEventsData(),
         getInventory(),
     ]);
-  } catch (error: any)
- {
+  } catch (error: any) {
     fetchError = error.message || "Не удалось загрузить финансовые данные.";
   }
 
@@ -37,121 +29,121 @@ export default async function ExpensesPage() {
   const totalRevenue = washEvents.reduce((sum, event) => sum + (event.netAmount ?? event.totalAmount), 0);
   const profit = totalRevenue - totalExpenses;
 
-
   return (
-    <div className="container mx-auto py-4 md:py-8">
-      <PageHeader
-        title="Расходы и рентабельность"
-        description="Управляйте операционными расходами и отслеживайте общую прибыльность."
-        actions={
-          <Button asChild>
-            <Link href="/expenses/new">
-              <PlusCircle className="mr-2 h-4 w-4" /> Добавить расход
-            </Link>
-          </Button>
-        }
-      />
-       {fetchError && (
-        <Alert variant="destructive" className="mb-4">
-          <AlertTriangle className="h-4 w-4" />
-          <AlertTitle>Ошибка загрузки</AlertTitle>
-          <AlertDescription>{fetchError}</AlertDescription>
-        </Alert>
+    <div className="expenses">
+      {/* Page Header */}
+      <div className="page-header-section">
+        <div className="page-header-content">
+          <div className="page-title-section">
+            <h1>Расходы и рентабельность</h1>
+            <p>Управляйте операционными расходами и отслеживайте общую прибыльность.</p>
+          </div>
+          <Link href="/expenses/new" className="add-expense-btn">
+            <PlusCircle className="h-4 w-4" />
+            Добавить расход
+          </Link>
+        </div>
+      </div>
+
+      {/* Error Alert */}
+      {fetchError && (
+        <div className="alert error">
+          <AlertTriangle className="h-5 w-5" />
+          <div>
+            <div className="alert-title">Ошибка загрузки</div>
+            <div className="alert-description">{fetchError}</div>
+          </div>
+        </div>
       )}
 
       {/* Profitability Dashboard */}
-      <div className="grid gap-4 md:gap-6 md:grid-cols-2 lg:grid-cols-4 mb-6 md:mb-8">
-        <Card className="shadow-md">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Общая выручка</CardTitle>
-                <TrendingUp className="h-5 w-5 text-green-500" />
-            </CardHeader>
-            <CardContent>
-                <div className="text-2xl font-bold font-headline text-green-600">
-                    {totalRevenue.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB' })}
-                </div>
-                <p className="text-xs text-muted-foreground">За все время (за вычетом комиссий)</p>
-            </CardContent>
-        </Card>
-        <Card className="shadow-md">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Всего расходов</CardTitle>
-                <ShoppingCart className="h-5 w-5 text-destructive" />
-            </CardHeader>
-            <CardContent>
-                <div className="text-2xl font-bold font-headline text-destructive">
-                    {totalExpenses.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB' })}
-                </div>
-                 <p className="text-xs text-muted-foreground">За все время</p>
-            </CardContent>
-        </Card>
-         <Card className="shadow-md bg-accent/50">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium">Прибыль</CardTitle>
-                <Scale className="h-5 w-5 text-primary" />
-            </CardHeader>
-            <CardContent>
-                <div className={`text-2xl font-bold font-headline ${profit >= 0 ? 'text-primary' : 'text-destructive'}`}>
-                    {profit.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB' })}
-                </div>
-                 <p className="text-xs text-muted-foreground">Выручка - Расходы</p>
-            </CardContent>
-        </Card>
-        <Card className="shadow-md bg-sky-50 border-sky-200">
-            <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-sm font-medium text-sky-800">Остаток химии на складе</CardTitle>
-                <Droplets className="h-5 w-5 text-sky-600" />
-            </CardHeader>
-            <CardContent>
-                <div className="text-2xl font-bold font-headline text-sky-700">
-                    {(inventory.chemicalStockGrams / 1000).toLocaleString('ru-RU', { maximumFractionDigits: 2 })} кг
-                </div>
-                 <p className="text-xs text-muted-foreground">На основе занесенных закупок</p>
-            </CardContent>
-        </Card>
+      <div className="dashboard-grid">
+        <div className="dashboard-card">
+          <div className="dashboard-card-header">
+            <div className="dashboard-card-title">Общая выручка</div>
+            <TrendingUp className="dashboard-card-icon revenue" />
+          </div>
+          <div className="dashboard-card-value revenue">
+            {totalRevenue.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB' })}
+          </div>
+          <div className="dashboard-card-description">За все время (за вычетом комиссий)</div>
+        </div>
+
+        <div className="dashboard-card">
+          <div className="dashboard-card-header">
+            <div className="dashboard-card-title">Всего расходов</div>
+            <ShoppingCart className="dashboard-card-icon expenses" />
+          </div>
+          <div className="dashboard-card-value expenses">
+            {totalExpenses.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB' })}
+          </div>
+          <div className="dashboard-card-description">За все время</div>
+        </div>
+
+        <div className="dashboard-card profit">
+          <div className="dashboard-card-header">
+            <div className="dashboard-card-title">Прибыль</div>
+            <Scale className="dashboard-card-icon profit" />
+          </div>
+          <div className={`dashboard-card-value profit ${profit >= 0 ? 'positive' : 'negative'}`}>
+            {profit.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB' })}
+          </div>
+          <div className="dashboard-card-description">Выручка - Расходы</div>
+        </div>
+
+        <div className="dashboard-card inventory">
+          <div className="dashboard-card-header">
+            <div className="dashboard-card-title">Остаток химии на складе</div>
+            <Droplets className="dashboard-card-icon inventory" />
+          </div>
+          <div className="dashboard-card-value inventory">
+            {(inventory.chemicalStockGrams / 1000).toLocaleString('ru-RU', { maximumFractionDigits: 2 })} кг
+          </div>
+          <div className="dashboard-card-description">На основе занесенных закупок</div>
+        </div>
       </div>
 
-
-      <Card className="shadow-md">
-        <CardHeader>
-            <CardTitle>Журнал расходов</CardTitle>
-        </CardHeader>
-        <CardContent className="p-0">
-          <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[120px]">Дата</TableHead>
-                  <TableHead>Описание</TableHead>
-                  <TableHead>Детали</TableHead>
-                  <TableHead className="text-right">Сумма</TableHead>
-                  <TableHead className="text-right w-[120px]">Действия</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {!fetchError && expenses.map((expense) => (
-                  <TableRow key={expense.id} className="hover:bg-muted/50 transition-colors">
-                    <TableCell className="font-medium">
-                      {format(new Date(expense.date), 'dd.MM.yyyy', { locale: ru })}
-                    </TableCell>
-                    <TableCell>
-                      <p className="font-medium">{expense.description}</p>
-                      <Badge variant="outline" className="mt-1">{expense.category}</Badge>
-                    </TableCell>
-                    <TableCell className="text-muted-foreground text-sm">
-                      {expense.quantity && expense.pricePerUnit ? (
-                        <span>{expense.quantity} {expense.unit || 'шт.'} × {expense.pricePerUnit.toLocaleString('ru-RU')} руб.</span>
-                      ) : '-'}
-                    </TableCell>
-                    <TableCell className="text-right font-semibold text-destructive">
+      {/* Expenses Table */}
+      <div className="expenses-table-card">
+        <div className="expenses-table-header">
+          <h2 className="expenses-table-title">Журнал расходов</h2>
+        </div>
+        <div className="overflow-x-auto">
+          <table className="expenses-table">
+            <thead>
+              <tr className="expenses-table-header-row">
+                <th className="w-[120px]">Дата</th>
+                <th>Описание</th>
+                <th>Детали</th>
+                <th className="text-right">Сумма</th>
+                <th className="text-right w-[120px]">Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              {!fetchError && expenses.map((expense) => (
+                <tr key={expense.id} className="expenses-table-row">
+                  <td className="expenses-table-cell font-medium">
+                    {format(new Date(expense.date), 'dd.MM.yyyy', { locale: ru })}
+                  </td>
+                  <td className="expenses-table-cell">
+                    <div className="expense-description">{expense.description}</div>
+                    <div className="category-badge">{expense.category}</div>
+                  </td>
+                  <td className="expenses-table-cell expense-details">
+                    {expense.quantity && expense.pricePerUnit ? (
+                      <span>{expense.quantity} {expense.unit || 'шт.'} × {expense.pricePerUnit.toLocaleString('ru-RU')} руб.</span>
+                    ) : '-'}
+                  </td>
+                  <td className="expenses-table-cell text-right">
+                    <div className="amount-display">
                       - {expense.amount.toLocaleString('ru-RU', { style: 'currency', currency: 'RUB' })}
-                    </TableCell>
-                    <TableCell className="text-right">
-                      <Button variant="ghost" size="icon" asChild className="mr-1 text-muted-foreground hover:text-primary transition-colors">
-                        <Link href={`/expenses/${expense.id}/edit`} aria-label={`Редактировать ${expense.description}`}>
-                          <Edit className="h-4 w-4" />
-                        </Link>
-                      </Button>
+                    </div>
+                  </td>
+                  <td className="expenses-table-cell text-right">
+                    <div className="action-buttons">
+                      <Link href={`/expenses/${expense.id}/edit`} className="action-btn" aria-label={`Редактировать ${expense.description}`}>
+                        <Edit className="h-4 w-4" />
+                      </Link>
                       <DeleteConfirmationButton
                         apiPath="/api/expenses"
                         entityId={expense.id}
@@ -160,30 +152,43 @@ export default async function ExpensesPage() {
                         toastDescription={`Запись о расходе "${expense.description}" успешно удалена.`}
                         description={
                           <>
-                            Вы собираетесь безвозвратно удалить запись о расходе <strong className="text-foreground">{expense.description}</strong> на сумму {expense.amount} руб.
+                            Вы собираетесь безвозвратно удалить запись о расходе <strong>{expense.description}</strong> на сумму {expense.amount} руб.
                             Это действие нельзя отменить.
                           </>
                         }
+                        trigger={
+                          <button className="action-btn danger" aria-label={`Удалить ${expense.description}`}>
+                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                          </button>
+                        }
                       />
-                    </TableCell>
-                  </TableRow>
-                ))}
-                {!fetchError && expenses.length === 0 && (
-                  <TableRow>
-                    <TableCell colSpan={5} className="text-center text-muted-foreground py-16">
-                      <ShoppingCart className="mx-auto h-12 w-12 text-muted-foreground/50 mb-4" />
-                      Записей о расходах нет.
-                      <Button variant="link" asChild className="mt-2">
-                        <Link href="/expenses/new">Добавьте первую запись</Link>
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </div>
-        </CardContent>
-      </Card>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+              {!fetchError && expenses.length === 0 && (
+                <tr>
+                  <td colSpan={5}>
+                    <div className="empty-state">
+                      <div className="empty-icon">
+                        <ShoppingCart className="h-12 w-12" />
+                      </div>
+                      <div className="empty-title">Записей о расходах нет</div>
+                      <div className="empty-subtitle">Добавьте первую запись</div>
+                      <Link href="/expenses/new" className="empty-action-btn">
+                        <PlusCircle className="h-4 w-4 mr-2" />
+                        Добавить запись
+                      </Link>
+                    </div>
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }

@@ -15,16 +15,16 @@ import { ru } from "date-fns/locale";
 import { Avatar, AvatarFallback } from "../ui/avatar";
 import { useAuth } from "@/contexts/AuthContext";
 import { DeleteConfirmationButton } from "./DeleteConfirmationButton";
+import { handleCommentUpdate } from "@/app/wash-log/actions";
 
 
 interface CommentDialogProps {
     event: WashEvent;
     employeeMap: Map<string, string>;
-    onCommentUpdate: (eventId: string, newComments: WashComment[]) => Promise<void>;
     trigger?: React.ReactNode;
 }
 
-export function CommentDialog({ event, employeeMap, onCommentUpdate, trigger }: CommentDialogProps) {
+export function CommentDialog({ event, employeeMap, trigger }: CommentDialogProps) {
     const [isOpen, setIsOpen] = useState(false);
     const [newComment, setNewComment] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);

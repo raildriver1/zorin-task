@@ -1,27 +1,21 @@
 
 export const dynamic = 'force-dynamic';
 
+import "@/styles/transactions.css";
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import PageHeader from '@/components/layout/PageHeader';
-import { PlusCircle, Edit, DollarSign, CreditCard, Landmark, ListChecks, Car, Users } from 'lucide-react';
+import { PlusCircle, Edit, DollarSign, CreditCard, Landmark, ListChecks, Car, Users, AlertTriangle } from 'lucide-react';
 import type { WashEvent, PaymentType, Employee } from '@/types';
-import { Badge } from "@/components/ui/badge";
 import { format } from 'date-fns';
 import { ru } from 'date-fns/locale';
 import { getWashEventsData, getEmployeesData } from '@/lib/data-loader';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { AlertTriangle } from 'lucide-react';
 import { DeleteConfirmationButton } from '@/components/common/DeleteConfirmationButton';
 
 
 const PaymentTypeIcon = ({ type }: { type: PaymentType }) => {
   switch (type) {
-    case 'cash': return <DollarSign className="h-4 w-4 mr-1.5 text-green-600" />;
-    case 'card': return <CreditCard className="h-4 w-4 mr-1.5 text-blue-600" />;
-    case 'transfer': return <Landmark className="h-4 w-4 mr-1.5 text-purple-600" />;
+    case 'cash': return <DollarSign className={`payment-type-icon cash`} />;
+    case 'card': return <CreditCard className={`payment-type-icon card`} />;
+    case 'transfer': return <Landmark className={`payment-type-icon transfer`} />;
     default: return null;
   }
 };
@@ -54,57 +48,75 @@ export default async function TransactionsPage() {
   const employeeMap = new Map(employees.map(e => [e.id, e.fullName]));
 
   return (
-    <div className="container mx-auto py-4 md:py-8">
-      <PageHeader
-        title="Розничные транзакции"
-        description="Отслеживайте платежи от прямых клиентов (наличные, карта, перевод)."
-      />
-       {fetchError && (
-        <Alert variant="destructive" className="mb-4">
-          <AlertTriangle className="h-4 w-4" />
-          <AlertTitle>Ошибка загрузки</AlertTitle>
-          <AlertDescription>{fetchError}</AlertDescription>
-        </Alert>
+    <div className="transactions">
+      {/* Page Header */}
+      <div className="page-header-section">
+        <div className="page-header-content">
+          <div className="page-title-section">
+            <h1>Розничные транзакции</h1>
+            <p>Отслеживайте платежи от прямых клиентов (наличные, карта, перевод).</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Error Alert */}
+      {fetchError && (
+        <div className="alert error">
+          <AlertTriangle className="h-5 w-5" />
+          <div>
+            <div className="alert-title">Ошибка загрузки</div>
+            <div className="alert-description">{fetchError}</div>
+          </div>
+        </div>
       )}
-      <Card className="shadow-md">
-        <CardContent className="p-0">
-          <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead className="w-[180px]">Дата</TableHead>
-                  <TableHead>Гос. номер</TableHead>
-                  <TableHead>Тип оплаты</TableHead>
-                  <TableHead>Исполнители</TableHead>
-                  <TableHead className="text-right">Сумма</TableHead>
-                  <TableHead className="text-right w-[120px]">Действия</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {!fetchError && retailWashEvents.map((transaction) => {
-                    const formattedDate = format(new Date(transaction.timestamp), 'dd.MM.yyyy HH:mm', { locale: ru });
-                    return (
-                    <TableRow key={transaction.id} className="hover:bg-muted/50 transition-colors">
-                        <TableCell>{formattedDate}</TableCell>
-                        <TableCell className="font-mono">{transaction.vehicleNumber}</TableCell>
-                        <TableCell>
-                          <Badge variant="outline" className="flex items-center w-fit text-sm py-1 px-2.5">
-                            <PaymentTypeIcon type={transaction.paymentMethod as PaymentType} />
-                            {paymentTypeTranslations[transaction.paymentMethod as PaymentType]}
-                          </Badge>
-                        </TableCell>
-                        <TableCell>
-                            {transaction.employeeIds.map(id => (
-                                <Badge key={id} variant="secondary" className="mr-1 mb-1">{employeeMap.get(id)?.split(' ')[0] || 'Неизв.'}</Badge>
-                            ))}
-                        </TableCell>
-                        <TableCell className="text-right font-semibold">{transaction.totalAmount.toFixed(2)} руб.</TableCell>
-                        <TableCell className="text-right">
-                        <Button variant="ghost" size="icon" asChild className="mr-1 text-muted-foreground hover:text-primary transition-colors">
-                            <Link href={`/wash-log/${transaction.id}/edit`} aria-label={`Редактировать мойку ${transaction.id}`}>
-                            <Edit className="h-4 w-4" />
-                            </Link>
-                        </Button>
+
+      {/* Transactions Table */}
+      <div className="transactions-table-card">
+        <div className="overflow-x-auto">
+          <table className="transactions-table">
+            <thead>
+              <tr className="transactions-table-header">
+                <th className="w-[180px]">Дата</th>
+                <th>Гос. номер</th>
+                <th>Тип оплаты</th>
+                <th>Исполнители</th>
+                <th className="text-right">Сумма</th>
+                <th className="text-right w-[120px]">Действия</th>
+              </tr>
+            </thead>
+                        <tbody>
+              {!fetchError && retailWashEvents.map((transaction) => {
+                  const formattedDate = format(new Date(transaction.timestamp), 'dd.MM.yyyy HH:mm', { locale: ru });
+                  const paymentType = transaction.paymentMethod as PaymentType;
+                  return (
+                  <tr key={transaction.id} className="transactions-table-row">
+                    <td className="transactions-table-cell">{formattedDate}</td>
+                    <td className="transactions-table-cell">
+                      <div className="vehicle-number">{transaction.vehicleNumber}</div>
+                    </td>
+                    <td className="transactions-table-cell">
+                      <div className={`payment-type-badge ${paymentType}`}>
+                        <PaymentTypeIcon type={paymentType} />
+                        {paymentTypeTranslations[paymentType]}
+                      </div>
+                    </td>
+                    <td className="transactions-table-cell">
+                      <div className="employee-badges">
+                        {transaction.employeeIds.map(id => (
+                            <span key={id} className="employee-badge">
+                              {employeeMap.get(id)?.split(' ')[0] || 'Неизв.'}
+                            </span>
+                        ))}
+                      </div>
+                    </td>
+                    <td className="transactions-table-cell text-right">
+                      <div className="amount-display">{transaction.totalAmount.toFixed(2)} руб.</div>
+                    </td>
+                    <td className="transactions-table-cell text-right">
+                      <div className="action-buttons">
+                        <Link href={`/wash-log/${transaction.id}/edit`} className="action-btn" aria-label={`Редактировать мойку ${transaction.id}`}>
+                          <Edit className="h-4 w-4" />
+                        </Link>
                         <DeleteConfirmationButton
                           apiPath="/api/wash-events"
                           entityId={transaction.id}
@@ -113,29 +125,40 @@ export default async function TransactionsPage() {
                           toastDescription={`Транзакция для машины ${transaction.vehicleNumber} от ${formattedDate} успешно удалена.`}
                           description={
                             <>
-                              Вы собираетесь безвозвратно удалить транзакцию для машины <strong className="font-mono text-foreground">{transaction.vehicleNumber}</strong> от <strong className="text-foreground">{formattedDate}</strong>.
+                              Вы собираетесь безвозвратно удалить транзакцию для машины <strong className="vehicle-number">{transaction.vehicleNumber}</strong> от <strong>{formattedDate}</strong>.
                               Это действие нельзя отменить.
                             </>
                           }
+                          trigger={
+                            <button className="action-btn danger" aria-label={`Удалить транзакцию ${transaction.id}`}>
+                              <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                              </svg>
+                            </button>
+                          }
                         />
-                        </TableCell>
-                    </TableRow>
-                    );
-                })}
-                {!fetchError && retailWashEvents.length === 0 && (
-                  <TableRow>
-                    <TableCell colSpan={6} className="text-center text-muted-foreground py-16">
-                      <ListChecks className="mx-auto h-12 w-12 text-muted-foreground/50 mb-4" />
-                      Транзакции не найдены.
-                       <p className="text-sm mt-2">Зарегистрируйте розничную мойку на рабочей станции, и она появится здесь.</p>
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </div>
-        </CardContent>
-      </Card>
+                      </div>
+                    </td>
+                  </tr>
+                  );
+              })}
+              {!fetchError && retailWashEvents.length === 0 && (
+                <tr>
+                  <td colSpan={6}>
+                    <div className="empty-state">
+                      <div className="empty-icon">
+                        <ListChecks className="h-12 w-12" />
+                      </div>
+                      <div className="empty-title">Транзакции не найдены</div>
+                      <div className="empty-subtitle">Зарегистрируйте розничную мойку на рабочей станции, и она появится здесь.</div>
+                    </div>
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }

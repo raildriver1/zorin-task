@@ -1,9 +1,8 @@
 
-import PageHeader from '@/components/layout/PageHeader';
+import "@/styles/settings.css";
 import { RetailPriceListForm } from './components/RetailPriceListForm';
 import { getWashEventsData, getEmployeesData } from '@/lib/data-loader';
 import type { WashEvent, Employee } from '@/types';
-import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { AlertTriangle } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
@@ -26,19 +25,29 @@ export default async function SettingsPage() {
   const { washEvents, employees, error } = await fetchData();
 
   return (
-    <div className="container mx-auto py-4 md:py-8">
-      <PageHeader
-        title="Настройки 'Наличка'"
-        description="Управляйте розничным прайс-листом для клиентов, оплачивающих наличными или картой."
-      />
+    <div className="settings">
+      <div className="page-header-section">
+        <div className="page-header-content">
+          <div className="page-title-section">
+            <h1>Настройки 'Наличка'</h1>
+            <p>Управляйте розничным прайс-листом для клиентов, оплачивающих наличными или картой.</p>
+          </div>
+        </div>
+      </div>
+
       {error && (
-         <Alert variant="destructive" className="mb-4">
-          <AlertTriangle className="h-4 w-4" />
-          <AlertTitle>Ошибка Загрузки</AlertTitle>
-          <AlertDescription>{error}</AlertDescription>
-        </Alert>
+         <div className="alert error">
+          <AlertTriangle className="h-5 w-5" />
+          <div>
+            <div className="alert-title">Ошибка Загрузки</div>
+            <div className="alert-description">{error}</div>
+          </div>
+        </div>
       )}
-      <RetailPriceListForm allWashEvents={washEvents} allEmployees={employees} />
+
+      <div className="price-list-form-card">
+        <RetailPriceListForm allWashEvents={washEvents} allEmployees={employees} />
+      </div>
     </div>
   );
 }

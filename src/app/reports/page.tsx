@@ -1,16 +1,21 @@
 
 export const dynamic = 'force-dynamic';
 
-import PageHeader from '@/components/layout/PageHeader';
+import "@/styles/reports.css";
+import { BrainCircuit } from 'lucide-react';
 import { AIReportGenerator } from './components/AIReportGenerator';
 
 export default async function AIReportsPage() {
   return (
-    <div className="container mx-auto py-4 md:py-8">
-      <PageHeader
-        title="AI-Аналитика"
-        description="Создавайте информативные отчеты об операциях вашей автомойки с помощью искусственного интеллекта."
-      />
+    <div className="reports">
+      <div className="page-header-section">
+        <div className="page-header-content">
+          <div className="page-title-section">
+            <h1>AI-Аналитика</h1>
+            <p>Создавайте информативные отчеты об операциях вашей автомойки с помощью искусственного интеллекта.</p>
+          </div>
+        </div>
+      </div>
       <AIReportGenerator />
     </div>
   );

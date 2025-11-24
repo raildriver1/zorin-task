@@ -1,16 +1,10 @@
 
 export const dynamic = 'force-dynamic';
 
+import "@/styles/employees.css";
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
-import PageHeader from '@/components/layout/PageHeader';
-import { PlusCircle, Edit, UserCog, Check, XIcon, Wallet, WalletCards } from 'lucide-react';
+import { PlusCircle, Edit, UserCog, Check, XIcon, Wallet, WalletCards, AlertTriangle } from 'lucide-react';
 import type { Employee, SalaryScheme } from '@/types';
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { AlertTriangle } from 'lucide-react';
-import { Badge } from '@/components/ui/badge';
 import { DeleteConfirmationButton } from '@/components/common/DeleteConfirmationButton';
 import { getEmployeesData, getSalarySchemesData } from '@/lib/data-loader';
 
@@ -32,73 +26,83 @@ export default async function EmployeesPage() {
   const schemeMap = new Map(salarySchemes.map(scheme => [scheme.id, scheme.name]));
 
   return (
-    <div className="container mx-auto py-4 md:py-8">
-      <PageHeader
-        title="Сотрудники"
-        description="Управляйте информацией о ваших сотрудниках и их доступом."
-        actions={
-          <Button asChild>
-            <Link href="/employees/new">
-              <PlusCircle className="mr-2 h-4 w-4" /> Добавить сотрудника
-            </Link>
-          </Button>
-        }
-      />
+    <div className="employees">
+      {/* Page Header */}
+      <div className="page-header-section">
+        <div className="page-header-content">
+          <div className="page-title-section">
+            <h1>Сотрудники</h1>
+            <p>Управляйте информацией о ваших сотрудниках и их доступом.</p>
+          </div>
+          <Link href="/employees/new" className="add-employee-btn">
+            <PlusCircle className="h-4 w-4" />
+            Добавить сотрудника
+          </Link>
+        </div>
+      </div>
+
+      {/* Error Alert */}
       {fetchError && (
-        <Alert variant="destructive" className="mb-4">
-          <AlertTriangle className="h-4 w-4" />
-          <AlertTitle>Ошибка загрузки</AlertTitle>
-          <AlertDescription>{fetchError}</AlertDescription>
-        </Alert>
+        <div className="alert error">
+          <AlertTriangle className="h-5 w-5" />
+          <div>
+            <div className="alert-title">Ошибка загрузки</div>
+            <div className="alert-description">{fetchError}</div>
+          </div>
+        </div>
       )}
-      <Card className="shadow-md">
-        <CardContent className="p-0">
-          <div className="overflow-x-auto">
-            <Table>
-              <TableHeader>
-                <TableRow>
-                  <TableHead>ФИО</TableHead>
-                  <TableHead>Логин</TableHead>
-                  <TableHead>Схема зарплаты</TableHead>
-                  <TableHead>Телефон</TableHead>
-                  <TableHead>Платежные реквизиты</TableHead>
-                  <TableHead className="text-center">Есть машина</TableHead>
-                  <TableHead className="text-right w-[120px]">Действия</TableHead>
-                </TableRow>
-              </TableHeader>
-              <TableBody>
-                {!fetchError && employees.map((employee) => (
-                  <TableRow key={employee.id} className="hover:bg-muted/50 transition-colors">
-                    <TableCell className="font-medium text-primary">{employee.fullName}</TableCell>
-                    <TableCell>{employee.username || '-'}</TableCell>
-                    <TableCell>
-                      {employee.salarySchemeId ? (
-                        <Badge variant="outline" className="flex items-center w-fit">
-                           <Wallet className="h-3 w-3 mr-1.5" />
-                           {schemeMap.get(employee.salarySchemeId) || 'Неизвестная схема'}
-                        </Badge>
-                      ) : (
-                        '-'
-                      )}
-                    </TableCell>
-                    <TableCell>{employee.phone}</TableCell>
-                    <TableCell className="text-muted-foreground">{employee.paymentDetails}</TableCell>
-                    <TableCell className="text-center">
-                      <Badge variant={employee.hasCar ? "secondary" : "outline"} className={employee.hasCar ? "border-green-400" : ""}>
-                        {employee.hasCar ? <Check className="h-4 w-4 text-green-600" /> : <XIcon className="h-4 w-4 text-destructive" />}
-                      </Badge>
-                    </TableCell>
-                    <TableCell className="text-right">
-                       <Button variant="ghost" size="icon" asChild className="mr-1 text-muted-foreground hover:text-primary transition-colors">
-                        <Link href={`/employees/${employee.id}/finance`} aria-label={`Финансы ${employee.fullName}`}>
-                          <WalletCards className="h-4 w-4" />
-                        </Link>
-                      </Button>
-                      <Button variant="ghost" size="icon" asChild className="mr-1 text-muted-foreground hover:text-primary transition-colors">
-                        <Link href={`/employees/${employee.id}/edit`} aria-label={`Редактировать ${employee.fullName}`}>
-                          <Edit className="h-4 w-4" />
-                        </Link>
-                      </Button>
+
+      {/* Employees Table */}
+      <div className="employees-table-card">
+        <div className="overflow-x-auto">
+          <table className="employees-table">
+            <thead>
+              <tr className="employees-table-header">
+                <th>ФИО</th>
+                <th>Логин</th>
+                <th>Схема зарплаты</th>
+                <th>Телефон</th>
+                <th>Платежные реквизиты</th>
+                <th className="text-center">Есть машина</th>
+                <th className="text-right w-[120px]">Действия</th>
+              </tr>
+            </thead>
+            <tbody>
+              {!fetchError && employees.map((employee) => (
+                <tr key={employee.id} className="employees-table-row">
+                  <td className="employees-table-cell">
+                    <div className="employee-name">{employee.fullName}</div>
+                  </td>
+                  <td className="employees-table-cell">
+                    <div className="employee-username">{employee.username || '-'}</div>
+                  </td>
+                  <td className="employees-table-cell">
+                    {employee.salarySchemeId ? (
+                      <div className="salary-scheme-badge">
+                        <Wallet className="h-3 w-3" />
+                        {schemeMap.get(employee.salarySchemeId) || 'Неизвестная схема'}
+                      </div>
+                    ) : (
+                      '-'
+                    )}
+                  </td>
+                  <td className="employees-table-cell">{employee.phone}</td>
+                  <td className="employees-table-cell">
+                    <div className="payment-details">{employee.paymentDetails}</div>
+                  </td>
+                  <td className="employees-table-cell text-center">
+                    <div className={`has-car-badge ${employee.hasCar ? 'yes' : 'no'}`}>
+                      {employee.hasCar ? <Check className="h-4 w-4" /> : <XIcon className="h-4 w-4" />}
+                    </div>
+                  </td>
+                  <td className="employees-table-cell text-right">
+                    <div className="action-buttons">
+                      <Link href={`/employees/${employee.id}/finance`} className="action-btn" aria-label={`Финансы ${employee.fullName}`}>
+                        <WalletCards className="h-4 w-4" />
+                      </Link>
+                      <Link href={`/employees/${employee.id}/edit`} className="action-btn" aria-label={`Редактировать ${employee.fullName}`}>
+                        <Edit className="h-4 w-4" />
+                      </Link>
                       <DeleteConfirmationButton
                         apiPath="/api/employees"
                         entityId={employee.id}
@@ -107,30 +111,43 @@ export default async function EmployeesPage() {
                         toastDescription={`Сотрудник "${employee.fullName}" успешно удален.`}
                         description={
                           <>
-                            Вы собираетесь безвозвратно удалить сотрудника <strong className="text-foreground">{employee.fullName}</strong>.
+                            Вы собираетесь безвозвратно удалить сотрудника <strong>{employee.fullName}</strong>.
                             Это действие нельзя отменить.
                           </>
                         }
+                        trigger={
+                          <button className="action-btn danger" aria-label={`Удалить ${employee.fullName}`}>
+                            <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                            </svg>
+                          </button>
+                        }
                       />
-                    </TableCell>
-                  </TableRow>
-                ))}
-                {!fetchError && employees.length === 0 && (
-                  <TableRow>
-                    <TableCell colSpan={7} className="text-center text-muted-foreground py-16">
-                      <UserCog className="mx-auto h-12 w-12 text-muted-foreground/50 mb-4" />
-                      Сотрудники не найдены.
-                      <Button variant="link" asChild className="mt-2">
-                        <Link href="/employees/new">Добавьте своего первого сотрудника</Link>
-                      </Button>
-                    </TableCell>
-                  </TableRow>
-                )}
-              </TableBody>
-            </Table>
-          </div>
-        </CardContent>
-      </Card>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+              {!fetchError && employees.length === 0 && (
+                <tr>
+                  <td colSpan={7}>
+                    <div className="empty-state">
+                      <div className="empty-icon">
+                        <UserCog className="h-12 w-12" />
+                      </div>
+                      <div className="empty-title">Сотрудники не найдены</div>
+                      <div className="empty-subtitle">Добавьте своего первого сотрудника</div>
+                      <Link href="/employees/new" className="empty-action-btn">
+                        <PlusCircle className="h-4 w-4 mr-2" />
+                        Добавить сотрудника
+                      </Link>
+                    </div>
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   );
 }
