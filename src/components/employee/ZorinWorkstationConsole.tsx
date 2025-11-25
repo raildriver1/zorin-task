@@ -101,8 +101,14 @@ export function ZorinWorkstationConsole() {
   }, []);
 
   useEffect(() => {
-    if (loggedInEmployee && loggedInEmployee.username !== 'admin' && !selectedEmployees.some(e => e.id === loggedInEmployee.id)) {
-      setSelectedEmployees(prev => [...prev, loggedInEmployee]);
+    if (loggedInEmployee && loggedInEmployee.username !== 'admin') {
+      setSelectedEmployees(prev => {
+        // Only add if not already in the list
+        if (!prev.some(e => e.id === loggedInEmployee.id)) {
+          return [...prev, loggedInEmployee];
+        }
+        return prev;
+      });
     }
   }, [loggedInEmployee]);
 
@@ -174,7 +180,8 @@ export function ZorinWorkstationConsole() {
     resetFormStateForNewVehicle(true);
 
     // Find last wash for this vehicle
-    const lastWash = allWashEvents.find(event => event.vehicleNumber === normalizedInput);
+    const vehicleWashes = allWashEvents.filter(event => event.vehicleNumber === normalizedInput);
+    const lastWash = vehicleWashes.sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())[0];
     if (lastWash) {
         const services = [lastWash.services.main, ...lastWash.services.additional];
         setLastWashServices(services.map(s => ({ ...s, id: s.id || `last-wash-service-${s.serviceName}`, isFromLastWash: true })));

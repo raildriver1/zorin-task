@@ -62,7 +62,18 @@ export function AppLayout({ children, newServicesCount = 0 }: { children: ReactN
   if (isEmployeeOnlyPage) {
     return <>{children}</>;
   }
-  
+
+  // Redirect non-admin employees to their workstation if they try to access manager pages
+  const isManagerPage = !pathname.startsWith('/employee') && !pathname.startsWith('/login');
+  if (isManagerPage && employee?.username !== 'admin') {
+    router.push('/employee/workstation');
+    return (
+      <div className="flex h-screen w-full items-center justify-center">
+        <Loader2 className="h-12 w-12 animate-spin text-primary" />
+      </div>
+    );
+  }
+
   // For the main manager layout
   return (
     <div className="flex min-h-screen bg-gray-50">
