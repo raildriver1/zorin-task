@@ -1,0 +1,54 @@
+{
+  "id": "we_1764071530137_p95m4be",
+  "timestamp": "2025-11-25T11:52:10.137Z",
+  "vehicleNumber": "A123BC777",
+  "employeeIds": [
+    "emp_1762757468682_a072ahl",
+    "emp_1764068183793_8syfo62"
+  ],
+  "paymentMethod": "cash",
+  "totalAmount": 1700,
+  "netAmount": 1700,
+  "acquiringFee": 0,
+  "services": {
+    "main": {
+      "serviceName": "Полуприцеп (внутри)",
+      "price": 850,
+      "id": "service-Полуприцеп (внутри)-1764071515130",
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1762757468682_a072ahl",
+          "amount": 0
+        },
+        {
+          "employeeId": "emp_1764068183793_8syfo62",
+          "amount": 0
+        }
+      ]
+    },
+    "additional": [
+      {
+        "serviceName": "Двигатель грузовой",
+        "price": 850,
+        "id": "service-Двигатель грузовой-1764071516897",
+        "employeeConsumptions": [
+          {
+            "employeeId": "emp_1762757468682_a072ahl",
+            "amount": 0
+          },
+          {
+            "employeeId": "emp_1764068183793_8syfo62",
+            "amount": 0
+          }
+        ]
+      }
+    ]
+  },
+  "driverComments": [
+    {
+      "text": "111",
+      "authorId": "emp_1762757468682_a072ahl",
+      "date": "2025-11-25T11:52:10.137Z"
+    }
+  ]
+}

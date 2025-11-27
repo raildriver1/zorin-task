@@ -1,0 +1,10 @@
+{
+  "id": "emp_1764068183793_8syfo62",
+  "fullName": "Сотрудник 1",
+  "phone": "+7 (999) 333-44-42",
+  "paymentDetails": "тбанк 1234 1234",
+  "hasCar": true,
+  "username": "sotrudnik1",
+  "password": "sotrudnik1",
+  "salarySchemeId": "scheme_1755717143027"
+}

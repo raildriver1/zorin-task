@@ -29,7 +29,7 @@ export async function POST(request: Request) {
     const cookie = serialize('employee_auth_sim', cookieValue, {
         path: '/',
         // httpOnly: true, // This was the problem. Removing it.
-        secure: process.env.NODE_ENV === 'production',
+        secure: false, // Changed for HTTP compatibility
         maxAge: 60 * 60 * 24 * 7, // 1 week
     });
 

@@ -269,6 +269,11 @@
   text-align: right;
 }
 
+.zorin-amount-value {
+  font-weight: 600;
+  color: #1f2937;
+}
+
 /* Actions Cell */
 .actions-cell {
   text-align: right;
@@ -395,4 +400,101 @@
   margin-top: 24px;
   padding-top: 24px;
   border-top: 1px solid #e5e7eb;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .wash-log {
+    padding: 16px;
+  }
+
+  .summary-card,
+  .search-section,
+  .table-card {
+    padding: 16px;
+    margin-bottom: 16px;
+  }
+
+  .summary-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .summary-title {
+    font-size: 16px;
+  }
+
+  /* Make table scrollable on mobile */
+  .table-card {
+    overflow-x: auto;
+  }
+
+  .table-header th,
+  .table-cell {
+    padding: 8px 12px;
+    font-size: 12px;
+  }
+
+  .table-header th {
+    white-space: nowrap;
+  }
+
+  /* Adjust cell widths for mobile */
+  .client-cell,
+  .services-cell {
+    min-width: 150px;
+  }
+
+  .employees-cell {
+    min-width: 100px;
+  }
+
+  .actions-cell {
+    width: 100px;
+  }
+
+  /* Stack date info vertically */
+  .date-main {
+    font-size: 12px;
+  }
+
+  .date-time {
+    font-size: 11px;
+  }
+
+  /* Adjust action buttons for touch */
+  .action-btn {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* Reduce font sizes */
+  .vehicle-number {
+    font-size: 13px;
+  }
+
+  .client-info,
+  .main-service {
+    font-size: 12px;
+  }
+
+  .employee-badge,
+  .additional-badge {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+
+  /* Empty state adjustments */
+  .empty-state {
+    padding: 40px 20px;
+  }
+
+  .empty-title {
+    font-size: 16px;
+  }
+
+  .empty-subtitle {
+    font-size: 13px;
+  }
 }

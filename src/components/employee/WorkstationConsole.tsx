@@ -42,13 +42,36 @@ const priorityServiceKeywords = [
 
 export function WorkstationConsole() {
   const { employee: loggedInEmployee } = useAuth();
-  const [isShiftActive, setIsShiftActive] = useState(false);
+  const [isShiftActive, setIsShiftActive] = useState(() => {
+    // Initialize from sessionStorage if available
+    if (typeof window !== 'undefined') {
+      const saved = sessionStorage.getItem('isShiftActive');
+      return saved === 'true';
+    }
+    return false;
+  });
   const [vehicleNumberInput, setVehicleNumberInput] = useState('');
   const [normalizedVehicleNumber, setNormalizedVehicleNumber] = useState('');
   
   const [allEmployees, setAllEmployees] = useState<Employee[]>([]);
   const [employeeMap, setEmployeeMap] = useState<Map<string, string>>(new Map());
-  const [selectedEmployees, setSelectedEmployees] = useState<Employee[]>([]);
+  const [selectedEmployees, setSelectedEmployees] = useState<Employee[]>(() => {
+    // Initialize from sessionStorage if available
+    if (typeof window !== 'undefined') {
+      const saved = sessionStorage.getItem('selectedEmployees');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            return parsed;
+          }
+        } catch (error) {
+          console.error('Failed to parse saved employees:', error);
+        }
+      }
+    }
+    return [];
+  });
 
   const [foundCounterAgent, setFoundCounterAgent] = useState<CounterAgent | null>(null);
   const [foundAggregators, setFoundAggregators] = useState<Aggregator[]>([]);
@@ -78,13 +101,6 @@ export function WorkstationConsole() {
   const [retailPriceConfig, setRetailPriceConfig] = useState<RetailPriceConfig>({ mainPriceList: [], additionalPriceList: [], allowCustomRetailServices: true, cardAcquiringPercentage: 1.2 });
 
   useEffect(() => {
-    const savedShiftState = sessionStorage.getItem('isShiftActive');
-    if (savedShiftState === 'true') {
-      setIsShiftActive(true);
-    }
-  }, []);
-
-  useEffect(() => {
     if (loggedInEmployee && loggedInEmployee.username !== 'admin') {
       setSelectedEmployees(prev => {
         // Only add if not already in the list
@@ -95,6 +111,13 @@ export function WorkstationConsole() {
       });
     }
   }, [loggedInEmployee]);
+
+  // Save selectedEmployees to sessionStorage whenever they change
+  useEffect(() => {
+    if (selectedEmployees.length > 0) {
+      sessionStorage.setItem('selectedEmployees', JSON.stringify(selectedEmployees));
+    }
+  }, [selectedEmployees]);
 
   useEffect(() => {
     async function fetchData() {
@@ -138,6 +161,7 @@ export function WorkstationConsole() {
       setCurrentStep("vehicleInput");
     } else {
       setCurrentStep("idle");
+      sessionStorage.removeItem('selectedEmployees'); // Clear saved employees when shift ends
       resetForm();
     }
   }, [isShiftActive]);
@@ -411,9 +435,11 @@ export function WorkstationConsole() {
     }
     
     const createDefaultConsumptions = (service: PriceListItem): EmployeeConsumption[] => {
+        const totalConsumption = service.chemicalConsumption || 0;
+        const perEmployee = selectedEmployees.length > 0 ? totalConsumption / selectedEmployees.length : 0;
         return selectedEmployees.map(emp => ({
             employeeId: emp.id,
-            amount: service.chemicalConsumption || 0
+            chemicalGrams: perEmployee
         }));
     };
 

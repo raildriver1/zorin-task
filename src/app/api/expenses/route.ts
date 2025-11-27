@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 
 import { NextResponse } from 'next/server';
 import fs from 'fs/promises';
@@ -54,7 +56,13 @@ export async function POST(request: Request) {
     invalidateExpensesCache();
 
     // Only update inventory after expense is successfully saved
-    if (newExpense.category === 'Закупка химии' && newExpense.unit === 'кг' && newExpense.quantity) {
+    // Check for chemical purchase (handle "кг", "кг.", "кг ", etc.)
+    const isChemicalPurchase = newExpense.category === 'Закупка химии' &&
+                               newExpense.unit &&
+                               newExpense.unit.trim().toLowerCase().startsWith('кг') &&
+                               newExpense.quantity;
+
+    if (isChemicalPurchase) {
         const amountInGrams = newExpense.quantity * 1000;
         await updateInventory(amountInGrams);
     }

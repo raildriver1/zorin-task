@@ -243,5 +243,6 @@
     }
   ],
   "allowCustomServices": true,
-  "balance": 0
+  "balance": 0,
+  "initialBalance": 0
 }

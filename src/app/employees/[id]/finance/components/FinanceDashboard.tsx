@@ -68,6 +68,7 @@ interface EditableConsumption {
 function WashEventDetailsDialog({ event, breakdownItem, employeeMap, children, onCommentSave }: { event: WashEvent, breakdownItem?: SalaryBreakdownItem, employeeMap: Map<string, string>, children: React.ReactNode, onCommentSave: (eventId: string, newComments: WashComment[]) => Promise<void> }) {
     const lastEdit = event.editHistory && event.editHistory.length > 0 ? event.editHistory[event.editHistory.length - 1] : null;
     const previousState = lastEdit?.previousState as WashEvent | undefined;
+    const hasComments = event.driverComments && event.driverComments.length > 0;
 
     const renderServiceList = (services: {main: PriceListItem, additional: PriceListItem[]}, title: string) => (
         <div>
@@ -80,7 +81,7 @@ function WashEventDetailsDialog({ event, breakdownItem, employeeMap, children, o
             </ul>
         </div>
     );
-    
+
     const renderDetail = (label: string, value: React.ReactNode, isDifferent = false) => (
         <div className={`p-2 rounded-md ${isDifferent ? 'bg-amber-100 dark:bg-amber-900/40 ring-1 ring-amber-300 dark:ring-amber-800' : ''}`}>
             <p className="text-xs text-muted-foreground">{label}</p>
@@ -90,7 +91,7 @@ function WashEventDetailsDialog({ event, breakdownItem, employeeMap, children, o
 
     const isTotalAmountDiff = previousState && event.totalAmount !== previousState.totalAmount;
     const isServiceDiff = previousState && (
-        event.services.main.serviceName !== previousState.services.main.serviceName || 
+        event.services.main.serviceName !== previousState.services.main.serviceName ||
         event.services.additional.length !== previousState.services.additional.length ||
         event.services.additional.some((s, i) => s.serviceName !== previousState.services.additional[i]?.serviceName)
     );
@@ -105,16 +106,6 @@ function WashEventDetailsDialog({ event, breakdownItem, employeeMap, children, o
                 <DialogHeader>
                     <DialogTitle className="flex items-center justify-between">
                        <span>Детали мойки: {event.vehicleNumber}</span>
-                       <CommentDialog 
-                         event={event} 
-                         employeeMap={employeeMap}
-                         onCommentUpdate={onCommentSave}
-                         trigger={
-                            <Button variant="ghost" size="icon" className="h-7 w-7">
-                                <MessageSquare className="h-4 w-4 text-muted-foreground" />
-                            </Button>
-                         }
-                        />
                     </DialogTitle>
                     <DialogDescription>
                         {format(new Date(event.timestamp), 'd MMMM yyyy в HH:mm', { locale: ru })}
@@ -159,7 +150,18 @@ function WashEventDetailsDialog({ event, breakdownItem, employeeMap, children, o
                     </p>
                 )}
 
-                <DialogFooter>
+                <DialogFooter className="flex flex-col sm:flex-row gap-2 sm:justify-between">
+                    <CommentDialog
+                         event={event}
+                         employeeMap={employeeMap}
+                         onCommentUpdate={onCommentSave}
+                         trigger={
+                            <Button variant={hasComments ? "default" : "outline"} className={cn("gap-2", hasComments && "bg-sky-600 hover:bg-sky-700")}>
+                                <MessageSquare className="h-4 w-4" />
+                                {hasComments ? `Комментарии (${event.driverComments?.length})` : "Добавить комментарий"}
+                            </Button>
+                         }
+                    />
                     <DialogClose asChild>
                         <Button variant="outline">Закрыть</Button>
                     </DialogClose>
@@ -878,16 +880,18 @@ export function FinanceDashboard({ employee, initialData, embedded = false, onTr
                         <CardHeader>
                             <CardTitle className="flex items-center gap-2"><BookCheck />История моек (за период)</CardTitle>
                         </CardHeader>
-                        <CardContent>
-                            <ScrollArea className="h-96">
+                        <CardContent className="p-0">
+                            <div className="wash-history-table-wrapper">
                             <TooltipProvider delayDuration={0}>
+                                <div className="wash-history-table-scroll">
                                 <Table>
                                     <TableHeader><TableRow>
                                         <TableHead className="w-[120px]">Дата</TableHead>
-                                        <TableHead>Машина</TableHead>
-                                        <TableHead>Услуга</TableHead>
-                                        <TableHead className="text-center">Исполнители</TableHead>
-                                        <TableHead className="text-right">Начислено</TableHead>
+                                        <TableHead className="min-w-[120px]">Машина</TableHead>
+                                        <TableHead className="min-w-[200px]">Услуга</TableHead>
+                                        <TableHead className="text-center min-w-[100px]">Исполнители</TableHead>
+                                        <TableHead className="text-right min-w-[120px]">Начислено</TableHead>
+                                        <TableHead className="w-[50px]"></TableHead>
                                     </TableRow></TableHeader>
                                     <TableBody>
                                         {employeeWashEvents.length > 0 ? [...employeeWashEvents].sort((a,b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()).map(event => {
@@ -899,24 +903,36 @@ export function FinanceDashboard({ employee, initialData, embedded = false, onTr
                                             <WashEventDetailsDialog key={event.id} event={event} breakdownItem={breakdownItem} employeeMap={employeeMap} onCommentSave={handleCommentSave}>
                                                 <TableRow className="cursor-pointer">
                                                     <TableCell>
-                                                      <div className="flex items-center gap-1.5">
+                                                      <div className="flex items-center gap-1.5 whitespace-nowrap">
                                                         {event.editHistory && event.editHistory.length > 0 && <Tooltip><TooltipTrigger><History className="h-4 w-4 text-amber-600 cursor-help" /></TooltipTrigger><TooltipContent><p>В данные этой мойки были внесены изменения.</p></TooltipContent></Tooltip>}
-                                                        {firstComment && <Tooltip><TooltipTrigger><MessageSquare className="h-4 w-4 text-sky-600 cursor-help" /></TooltipTrigger><TooltipContent><p>{firstComment.text}</p></TooltipContent></Tooltip>}
                                                         {format(new Date(event.timestamp), 'dd.MM HH:mm', { locale: ru })}
                                                       </div>
                                                     </TableCell>
-                                                    <TableCell><span className="font-mono hover:underline">{event.vehicleNumber}</span></TableCell>
-                                                    <TableCell className="max-w-[200px] truncate"><Tooltip><TooltipTrigger><p>{event.services.main.serviceName}</p></TooltipTrigger><TooltipContent><p>{event.services.main.serviceName}</p></TooltipContent></Tooltip></TableCell>
-                                                    <TableCell className="text-center"><Tooltip><TooltipTrigger><div className="flex items-center justify-center"><Users className="h-4 w-4 mr-1 text-muted-foreground" />{event.employeeIds.length}</div></TooltipTrigger><TooltipContent><p>{teamMembers}</p></TooltipContent></Tooltip></TableCell>
-                                                    <TableCell className="text-right font-semibold text-green-700">{(breakdownItem?.earnings ?? 0).toLocaleString('ru-RU')} руб.</TableCell>
+                                                    <TableCell className="whitespace-nowrap"><span className="font-mono hover:underline">{event.vehicleNumber}</span></TableCell>
+                                                    <TableCell className="max-w-[200px]"><Tooltip><TooltipTrigger><p className="truncate">{event.services.main.serviceName}</p></TooltipTrigger><TooltipContent><p>{event.services.main.serviceName}</p></TooltipContent></Tooltip></TableCell>
+                                                    <TableCell className="text-center"><Tooltip><TooltipTrigger><div className="flex items-center justify-center whitespace-nowrap"><Users className="h-4 w-4 mr-1 text-muted-foreground" />{event.employeeIds.length}</div></TooltipTrigger><TooltipContent><p>{teamMembers}</p></TooltipContent></Tooltip></TableCell>
+                                                    <TableCell className="text-right font-semibold text-green-700 whitespace-nowrap">{(breakdownItem?.earnings ?? 0).toLocaleString('ru-RU')} руб.</TableCell>
+                                                    <TableCell className="text-center">
+                                                      {firstComment && (
+                                                        <Tooltip>
+                                                          <TooltipTrigger onClick={(e) => e.stopPropagation()}>
+                                                            <Button variant="ghost" size="sm" className="h-8 w-8 p-0">
+                                                              <MessageSquare className="h-4 w-4 text-sky-600" />
+                                                            </Button>
+                                                          </TooltipTrigger>
+                                                          <TooltipContent><p>{firstComment.text}</p></TooltipContent>
+                                                        </Tooltip>
+                                                      )}
+                                                    </TableCell>
                                                 </TableRow>
                                             </WashEventDetailsDialog>
                                         )
-                                        }) : <TableRow><TableCell colSpan={5} className="text-center h-24">Нет моек за выбранный период.</TableCell></TableRow>}
+                                        }) : <TableRow><TableCell colSpan={6} className="text-center h-24">Нет моек за выбранный период.</TableCell></TableRow>}
                                     </TableBody>
                                 </Table>
+                                </div>
                             </TooltipProvider>
-                            </ScrollArea>
+                            </div>
                         </CardContent>
                     </Card>
                 )}

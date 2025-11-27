@@ -1,0 +1,31 @@
+{
+  "id": "we_1764163244736_rft99uc",
+  "timestamp": "2025-11-26T13:20:44.736Z",
+  "vehicleNumber": "A123BC777",
+  "employeeIds": [
+    "emp_1764068183793_8syfo62",
+    "emp_1764159773669_6asgiuh"
+  ],
+  "paymentMethod": "card",
+  "totalAmount": 1500,
+  "netAmount": 1482,
+  "acquiringFee": 18,
+  "services": {
+    "main": {
+      "serviceName": "Самосвал (одиночка)",
+      "price": 1500,
+      "id": "service-Самосвал (одиночка)-1764163237814",
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1764068183793_8syfo62",
+          "chemicalGrams": 0
+        },
+        {
+          "employeeId": "emp_1764159773669_6asgiuh",
+          "chemicalGrams": 0
+        }
+      ]
+    },
+    "additional": []
+  }
+}

@@ -14,5 +14,21 @@
     "type": "purchase",
     "amount": 3000,
     "description": "Выдача канистры химии (20 кг)"
+  },
+  {
+    "id": "txn_1764106712134_e8hd5tk",
+    "employeeId": "emp_1762757468682_a072ahl",
+    "date": "2025-11-25T21:38:32.134Z",
+    "type": "loan",
+    "amount": 4000,
+    "description": "за"
+  },
+  {
+    "id": "txn_1764107607711_uwlbsmb",
+    "employeeId": "emp_1762757468682_a072ahl",
+    "date": "2025-11-25T21:53:27.711Z",
+    "type": "bonus",
+    "amount": 44036,
+    "description": "0"
   }
 ]

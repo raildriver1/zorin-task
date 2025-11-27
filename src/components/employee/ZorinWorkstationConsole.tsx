@@ -60,13 +60,41 @@ const priorityServiceKeywords = [
 
 export function ZorinWorkstationConsole() {
   const { employee: loggedInEmployee } = useAuth();
-  const [isShiftActive, setIsShiftActive] = useState(false);
+  const [isShiftActive, setIsShiftActive] = useState(() => {
+    // Initialize from sessionStorage if available
+    if (typeof window !== 'undefined') {
+      const saved = sessionStorage.getItem('isShiftActive');
+      if (saved === 'true') {
+        console.log('[INIT] Initializing isShiftActive from sessionStorage: true');
+        return true;
+      }
+    }
+    console.log('[INIT] Initializing isShiftActive: false');
+    return false;
+  });
   const [vehicleNumberInput, setVehicleNumberInput] = useState('');
   const [normalizedVehicleNumber, setNormalizedVehicleNumber] = useState('');
 
   const [allEmployees, setAllEmployees] = useState<Employee[]>([]);
   const [employeeMap, setEmployeeMap] = useState<Map<string, string>>(new Map());
-  const [selectedEmployees, setSelectedEmployees] = useState<Employee[]>([]);
+  const [selectedEmployees, setSelectedEmployees] = useState<Employee[]>(() => {
+    // Initialize from sessionStorage if available
+    if (typeof window !== 'undefined') {
+      const saved = sessionStorage.getItem('selectedEmployees');
+      if (saved) {
+        try {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            console.log('[INIT] Initializing selectedEmployees from sessionStorage:', parsed);
+            return parsed;
+          }
+        } catch (error) {
+          console.error('[INIT] Failed to parse saved employees:', error);
+        }
+      }
+    }
+    return [];
+  });
 
   const [foundCounterAgent, setFoundCounterAgent] = useState<CounterAgent | null>(null);
   const [foundAggregators, setFoundAggregators] = useState<Aggregator[]>([]);
@@ -94,23 +122,29 @@ export function ZorinWorkstationConsole() {
   const [retailPriceConfig, setRetailPriceConfig] = useState<RetailPriceConfig>({ mainPriceList: [], additionalPriceList: [], allowCustomRetailServices: true, cardAcquiringPercentage: 1.2 });
 
   useEffect(() => {
-    const savedShiftState = sessionStorage.getItem('isShiftActive');
-    if (savedShiftState === 'true') {
-      setIsShiftActive(true);
-    }
-  }, []);
-
-  useEffect(() => {
+    console.log('[LOGGED_IN] loggedInEmployee:', loggedInEmployee);
     if (loggedInEmployee && loggedInEmployee.username !== 'admin') {
       setSelectedEmployees(prev => {
+        console.log('[LOGGED_IN] Current selectedEmployees:', prev);
         // Only add if not already in the list
         if (!prev.some(e => e.id === loggedInEmployee.id)) {
+          console.log('[LOGGED_IN] Adding logged in employee to list');
           return [...prev, loggedInEmployee];
         }
+        console.log('[LOGGED_IN] Employee already in list, not adding');
         return prev;
       });
     }
   }, [loggedInEmployee]);
+
+  // Save selectedEmployees to sessionStorage whenever they change
+  useEffect(() => {
+    console.log('[SAVE] selectedEmployees changed:', selectedEmployees);
+    if (selectedEmployees.length > 0) {
+      sessionStorage.setItem('selectedEmployees', JSON.stringify(selectedEmployees));
+      console.log('[SAVE] Saved to sessionStorage:', JSON.stringify(selectedEmployees));
+    }
+  }, [selectedEmployees]);
 
   useEffect(() => {
     async function fetchData() {
@@ -153,6 +187,7 @@ export function ZorinWorkstationConsole() {
       setCurrentStep("vehicleInput");
     } else {
       setCurrentStep("idle");
+      sessionStorage.removeItem('selectedEmployees'); // Clear saved employees when shift ends
       resetForm();
     }
   }, [isShiftActive]);
@@ -323,6 +358,10 @@ export function ZorinWorkstationConsole() {
     return washServices.reduce((sum, s) => sum + s.price, 0);
   };
 
+  const calculateTotalChemicalConsumption = () => {
+    return washServices.reduce((sum, s) => sum + (s.chemicalConsumption || 0), 0);
+  };
+
   const proceedToConfirmation = () => {
     if (washServices.length === 0) {
         toast({ title: "Ошибка", description: "Не выбрано ни одной услуги.", variant: "destructive" });
@@ -342,6 +381,7 @@ export function ZorinWorkstationConsole() {
   };
 
   const totalAmount = calculateTotalPrice();
+  const totalChemicalGrams = calculateTotalChemicalConsumption();
   const acquiringFee = selectedPaymentMethod === 'card' && retailPriceConfig.cardAcquiringPercentage
       ? totalAmount * ((retailPriceConfig.cardAcquiringPercentage || 0) / 100)
       : 0;
@@ -424,9 +464,11 @@ export function ZorinWorkstationConsole() {
     }
 
     const createDefaultConsumptions = (service: PriceListItem): EmployeeConsumption[] => {
+        const totalConsumption = service.chemicalConsumption || 0;
+        const perEmployee = selectedEmployees.length > 0 ? totalConsumption / selectedEmployees.length : 0;
         return selectedEmployees.map(emp => ({
             employeeId: emp.id,
-            amount: service.chemicalConsumption || 0
+            chemicalGrams: perEmployee
         }));
     };
 
@@ -497,10 +539,13 @@ export function ZorinWorkstationConsole() {
   };
 
   const resetFormStateForNewVehicle = (soft = false, keepEmployees = false) => {
+    console.log('[RESET_FORM] Called with soft:', soft, 'keepEmployees:', keepEmployees);
+    console.trace('[RESET_FORM] Stack trace:');
     if(!soft) {
       setVehicleNumberInput('');
       setNormalizedVehicleNumber('');
       if (!keepEmployees) {
+        console.log('[RESET_FORM] Resetting selectedEmployees to only logged in employee');
         setSelectedEmployees((loggedInEmployee && loggedInEmployee.username !== 'admin') ? [loggedInEmployee] : []);
       }
     }
@@ -655,23 +700,23 @@ export function ZorinWorkstationConsole() {
 
                 <div>
                   <label className="zorin-form-label">2. Введите номер машины</label>
-                  <div className="flex items-center space-x-2">
+                  <div className="zorin-vehicle-input-section">
                     <input
                       type="text"
                       value={vehicleNumberInput}
                       onChange={handleVehicleNumberChange}
                       placeholder="Например, А123ВС777"
-                      className="zorin-input"
+                      className="zorin-input zorin-vehicle-input"
                       disabled={isLoading}
                     />
-                    <button onClick={checkVehicleNumber} disabled={isLoading || !vehicleNumberInput.trim() || selectedEmployees.length === 0} className="zorin-button primary">
+                    {normalizedVehicleNumber && (
+                      <p className="text-sm text-muted-foreground mt-1">Нормализованный: {normalizedVehicleNumber}</p>
+                    )}
+                    <button onClick={checkVehicleNumber} disabled={isLoading || !vehicleNumberInput.trim() || selectedEmployees.length === 0} className="zorin-button primary zorin-check-button">
                       {isLoading && normalizedVehicleNumber ? <Loader2 className="mr-2 h-4 w-4 animate-spin" /> : <Car className="mr-2 h-4 w-4" />}
                       Проверить
                     </button>
                   </div>
-                  {normalizedVehicleNumber && (
-                    <p className="text-sm text-muted-foreground mt-1">Нормализованный: {normalizedVehicleNumber}</p>
-                  )}
                 </div>
               </div>
 
@@ -731,7 +776,10 @@ export function ZorinWorkstationConsole() {
                 </div>
               )}
 
-              <div className="zorin-payment-methods">
+              <RadioGroup
+                onValueChange={(value) => handlePaymentMethodSelect(value as "cash" | "card" | "transfer" | "aggregator")}
+                className="zorin-payment-methods"
+              >
                 <label className="zorin-payment-card">
                   <RadioGroupItem value="cash" className="sr-only" />
                   <div className="zorin-payment-icon cash">
@@ -763,12 +811,7 @@ export function ZorinWorkstationConsole() {
                   </div>
                   <span className="font-semibold">Агрегатор</span>
                 </label>
-              </div>
-
-              <RadioGroup
-                onValueChange={(value) => handlePaymentMethodSelect(value as "cash" | "card" | "transfer" | "aggregator")}
-                className="hidden"
-              />
+              </RadioGroup>
             </div>
           )}
 
@@ -841,19 +884,33 @@ export function ZorinWorkstationConsole() {
               {/* Services List */}
               <div className="zorin-service-list mb-4">
                 {filteredServices.length > 0 ? (
-                  filteredServices.map(service => (
+                  filteredServices.map(service => {
+                    const isFromLast = (service as any).isFromLastWash;
+                    return (
                     <div
                       key={service.serviceName}
-                      className={cn("zorin-service-item", washServices.some(s => s.serviceName === service.serviceName) && "selected")}
+                      className={cn(
+                        "zorin-service-item",
+                        washServices.some(s => s.serviceName === service.serviceName) && "selected",
+                        isFromLast && "from-last-wash"
+                      )}
                       onClick={() => handleServiceSelect(service)}
                     >
-                      <span className="zorin-service-name flex items-center gap-2">
-                        {(service as any).isFromLastWash && <Repeat className="h-4 w-4 text-primary" />}
-                        {service.serviceName}
-                      </span>
+                      <div className="flex items-center gap-2 flex-1">
+                        <span className="zorin-service-name flex items-center gap-2">
+                          {service.serviceName}
+                        </span>
+                        {isFromLast && (
+                          <span className="last-wash-badge">
+                            <Repeat className="h-3 w-3" />
+                            В прошлый раз
+                          </span>
+                        )}
+                      </div>
                       {showPrices && <span className="zorin-service-price">{service.price} руб.</span>}
                     </div>
-                  ))
+                    );
+                  })
                 ) : (
                   <p className="text-center text-muted-foreground py-4">
                     {servicesToShow.length > 0 ? "Услуги, соответствующие поиску, не найдены." : "Для данного клиента нет доступных услуг."}
@@ -928,6 +985,16 @@ export function ZorinWorkstationConsole() {
                       <p className="zorin-total-amount">Итого: {totalAmount.toFixed(2)} руб.</p>
                       {selectedPaymentMethod === 'card' && acquiringFee > 0 && (
                         <p className="text-sm text-muted-foreground">К получению: {netAmount.toFixed(2)} руб. (вкл. комиссию {acquiringFee.toFixed(2)} руб.)</p>
+                      )}
+                      {totalChemicalGrams > 0 && (
+                        <p className="text-sm text-blue-600 font-medium mt-1">
+                          🧪 Химия: {(totalChemicalGrams / 1000).toFixed(3)} кг ({totalChemicalGrams}г)
+                          {selectedEmployees.length > 1 && (
+                            <span className="text-xs ml-1">
+                              (по {(totalChemicalGrams / selectedEmployees.length).toFixed(0)}г на чел.)
+                            </span>
+                          )}
+                        </p>
                       )}
                     </div>
                   ) : (

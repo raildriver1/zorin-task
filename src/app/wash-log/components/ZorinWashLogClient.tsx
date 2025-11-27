@@ -223,7 +223,9 @@ export function ZorinWashLogClient({
 
                     {/* Amount Cell */}
                     <td className="zorin-table-cell zorin-amount-cell">
-                      {event.totalAmount.toLocaleString('ru-RU')} руб.
+                      <span className="zorin-amount-value">
+                        {event.totalAmount.toLocaleString('ru-RU')} руб.
+                      </span>
                     </td>
 
                     {/* Actions Cell */}

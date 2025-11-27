@@ -221,6 +221,45 @@
   border: none !important;
 }
 
+/* Vehicle Input Section */
+.zorin-vehicle-input-section {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+.zorin-vehicle-input {
+  width: 100% !important;
+  font-size: 18px !important;
+  padding: 16px 18px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  border: 2px solid #cbd5e1 !important;
+  border-radius: 8px !important;
+  transition: all 0.2s ease !important;
+}
+
+.zorin-vehicle-input:focus {
+  border-color: #0088cc !important;
+  box-shadow: 0 0 0 3px rgba(0, 136, 204, 0.1) !important;
+  outline: none !important;
+}
+
+.zorin-vehicle-input::placeholder {
+  text-transform: none !important;
+  letter-spacing: normal !important;
+  font-weight: 400 !important;
+  color: #94a3b8 !important;
+}
+
+.zorin-check-button {
+  width: 100% !important;
+  padding: 14px 24px !important;
+  font-size: 16px !important;
+  margin-top: 4px !important;
+}
+
 /* Payment Method Cards */
 .zorin-payment-methods {
   display: grid !important;
@@ -331,6 +370,34 @@
   font-weight: 700 !important;
   color: #059669 !important;
   margin-left: 16px !important;
+  white-space: nowrap !important;
+}
+
+/* Last Wash Service Highlight */
+.zorin-service-item.from-last-wash {
+  background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%) !important;
+  border: 2px solid #f59e0b !important;
+  box-shadow: 0 2px 8px rgba(245, 158, 11, 0.2) !important;
+}
+
+.zorin-service-item.from-last-wash:hover {
+  background: linear-gradient(135deg, #fde68a 0%, #fcd34d 100%) !important;
+  border-color: #f59e0b !important;
+  transform: translateX(4px) !important;
+}
+
+.last-wash-badge {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  padding: 4px 10px !important;
+  background: #f59e0b !important;
+  color: white !important;
+  border-radius: 12px !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
   white-space: nowrap !important;
 }
 
@@ -454,25 +521,176 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .zorin-workstation {
-    padding: 16px !important;
+    padding: 12px !important;
   }
 
   .zorin-shift-card,
   .zorin-registration-card {
-    padding: 20px !important;
+    padding: 16px !important;
+    border-radius: 12px !important;
   }
 
+  .zorin-shift-title,
+  .zorin-registration-title {
+    font-size: 18px !important;
+  }
+
+  .zorin-registration-description {
+    font-size: 13px !important;
+  }
+
+  /* Shift controls */
   .zorin-shift-controls {
     flex-direction: column !important;
     align-items: stretch !important;
+    gap: 12px !important;
   }
 
-  .zorin-payment-methods {
-    grid-template-columns: 1fr !important;
+  .zorin-shift-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    padding: 14px 24px !important;
+    font-size: 15px !important;
+  }
+
+  .zorin-shift-status {
+    text-align: center !important;
+    padding: 10px 20px !important;
+  }
+
+  /* Form sections */
+  .zorin-form-section {
+    padding: 16px !important;
+    margin-bottom: 16px !important;
   }
 
   .zorin-form-grid {
     grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .zorin-form-label {
+    font-size: 14px !important;
+  }
+
+  .zorin-input {
+    padding: 12px 14px !important;
+    font-size: 15px !important;
+  }
+
+  /* Vehicle input on mobile */
+  .zorin-vehicle-input {
+    font-size: 16px !important;
+    padding: 14px 16px !important;
+  }
+
+  .zorin-check-button {
+    padding: 16px 24px !important;
+    font-size: 16px !important;
+  }
+
+  /* Payment methods */
+  .zorin-payment-methods {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .zorin-payment-card {
+    padding: 16px !important;
+    flex-direction: row !important;
+    justify-content: flex-start !important;
+    gap: 16px !important;
+  }
+
+  .zorin-payment-icon {
+    width: 44px !important;
+    height: 44px !important;
+  }
+
+  /* Employee selection */
+  .zorin-employee-tags {
+    gap: 6px !important;
+  }
+
+  .zorin-employee-tag {
+    padding: 8px 14px !important;
+    font-size: 13px !important;
+  }
+
+  /* Service list */
+  .zorin-service-list {
+    max-height: 350px !important;
+    padding: 12px !important;
+  }
+
+  .zorin-service-item {
+    padding: 14px !important;
+    margin-bottom: 10px !important;
+  }
+
+  .zorin-service-name {
+    font-size: 14px !important;
+  }
+
+  .zorin-service-price {
+    font-size: 15px !important;
+  }
+
+  /* Last wash badge on mobile */
+  .last-wash-badge {
+    font-size: 10px !important;
+    padding: 3px 8px !important;
+  }
+
+  /* Summary section */
+  .zorin-summary-section {
+    padding: 16px !important;
+    margin: 16px 0 !important;
+  }
+
+  .zorin-summary-title {
+    font-size: 16px !important;
+  }
+
+  .zorin-summary-row {
+    padding: 10px 0 !important;
+  }
+
+  .zorin-summary-label {
+    font-size: 14px !important;
+  }
+
+  .zorin-summary-value {
+    font-size: 14px !important;
+  }
+
+  .zorin-total-amount {
+    font-size: 28px !important;
+  }
+
+  /* Buttons */
+  .zorin-button {
+    width: 100% !important;
+    padding: 14px 24px !important;
+    font-size: 15px !important;
+    justify-content: center !important;
+  }
+
+  /* Confirmation card */
+  .zorin-confirmation-card {
+    padding: 20px !important;
+    margin-top: 16px !important;
+  }
+
+  .zorin-confirmation-title {
+    font-size: 18px !important;
+  }
+
+  /* Alerts */
+  .zorin-alert {
+    padding: 14px 16px !important;
+    margin: 12px 0 !important;
+    font-size: 13px !important;
   }
 }
 

@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 
 import { NextResponse } from 'next/server';
 import fs from 'fs/promises';
@@ -69,15 +71,23 @@ export async function PUT(request: Request, { params }: { params: { id: string }
     try {
         const oldFileContent = await fs.readFile(filePath, 'utf-8');
         const oldData: Expense = JSON.parse(oldFileContent);
-        if (oldData.category === 'Закупка химии' && oldData.unit === 'кг' && oldData.quantity) {
+        const isOldChemicalPurchase = oldData.category === 'Закупка химии' &&
+                                      oldData.unit &&
+                                      oldData.unit.trim().toLowerCase().startsWith('кг') &&
+                                      oldData.quantity;
+        if (isOldChemicalPurchase) {
             oldChemicalAmountGrams = oldData.quantity * 1000;
         }
     } catch (e: any) {
       if (e.code !== 'ENOENT') console.error("Could not read old expense file:", e);
     }
-    
+
     let newChemicalAmountGrams = 0;
-    if (updatedData.category === 'Закупка химии' && updatedData.unit === 'кг' && updatedData.quantity) {
+    const isNewChemicalPurchase = updatedData.category === 'Закупка химии' &&
+                                  updatedData.unit &&
+                                  updatedData.unit.trim().toLowerCase().startsWith('кг') &&
+                                  updatedData.quantity;
+    if (isNewChemicalPurchase) {
         newChemicalAmountGrams = updatedData.quantity * 1000;
     }
 
@@ -113,7 +123,11 @@ export async function DELETE(request: Request, { params }: { params: { id: strin
      try {
         const fileContent = await fs.readFile(filePath, 'utf-8');
         const data: Expense = JSON.parse(fileContent);
-        if (data.category === 'Закупка химии' && data.unit === 'кг' && data.quantity) {
+        const isChemicalPurchase = data.category === 'Закупка химии' &&
+                                   data.unit &&
+                                   data.unit.trim().toLowerCase().startsWith('кг') &&
+                                   data.quantity;
+        if (isChemicalPurchase) {
             chemicalAmountToSubtractGrams = data.quantity * 1000;
         }
     } catch (e: any) {

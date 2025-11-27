@@ -7,7 +7,7 @@ import { Button } from '@/components/ui/button';
 import { Settings, Menu } from 'lucide-react';
 import { ZorinSidebar } from './ZorinSidebar';
 import { useAuth } from '@/contexts/AuthContext';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { Loader2 } from 'lucide-react';
 import { useState } from 'react';
 import { cn } from '@/lib/utils';
@@ -15,6 +15,7 @@ import { cn } from '@/lib/utils';
 export function AppLayout({ children, newServicesCount = 0 }: { children: ReactNode, newServicesCount?: number }) {
   const { isAuthenticated, employee, isLoading, logout } = useAuth();
   const pathname = usePathname();
+  const router = useRouter();
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isMobile, setIsMobile] = useState(false);
 

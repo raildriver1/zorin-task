@@ -1,0 +1,18 @@
+[
+  {
+    "id": "txn_1764106318790_nvn8kng",
+    "employeeId": "emp_1764068183793_8syfo62",
+    "date": "2025-11-25T21:31:58.790Z",
+    "type": "payment",
+    "amount": 1192.5,
+    "description": "Выплата зарплаты за период"
+  },
+  {
+    "id": "txn_1764106633087_k3jh0ku",
+    "employeeId": "emp_1764068183793_8syfo62",
+    "date": "2025-11-25T21:37:13.087Z",
+    "type": "loan",
+    "amount": 2000,
+    "description": "зп"
+  }
+]

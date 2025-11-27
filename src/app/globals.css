@@ -114,3 +114,44 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+/* Wash History Table - Scrolling */
+.wash-history-table-wrapper {
+  position: relative;
+}
+
+.wash-history-table-scroll {
+  max-height: 400px;
+  overflow-y: auto;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.wash-history-table-scroll table {
+  width: 100%;
+  min-width: 700px;
+}
+
+/* Desktop - only vertical scroll */
+@media (min-width: 769px) {
+  .wash-history-table-scroll {
+    overflow-x: hidden;
+  }
+
+  .wash-history-table-scroll table {
+    min-width: 100%;
+  }
+}
+
+/* Mobile - both vertical and horizontal scroll */
+@media (max-width: 768px) {
+  .wash-history-table-scroll {
+    overflow-x: auto;
+    overflow-y: auto;
+    max-height: 500px;
+  }
+
+  .wash-history-table-scroll table {
+    min-width: 700px;
+  }
+}

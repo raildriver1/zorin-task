@@ -1,0 +1,31 @@
+{
+  "id": "we_1764161192671_vktj54a",
+  "timestamp": "2025-11-26T12:46:32.671Z",
+  "vehicleNumber": "A123BC777",
+  "employeeIds": [
+    "emp_1762757468682_a072ahl",
+    "emp_1764068183793_8syfo62"
+  ],
+  "paymentMethod": "card",
+  "totalAmount": 800,
+  "netAmount": 790.4,
+  "acquiringFee": 9.6,
+  "services": {
+    "main": {
+      "serviceName": "Одиночка до 10 тонн (внутри)",
+      "price": 800,
+      "id": "service-Одиночка до 10 тонн (внутри)-1764161189607",
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1762757468682_a072ahl",
+          "chemicalGrams": 0
+        },
+        {
+          "employeeId": "emp_1764068183793_8syfo62",
+          "chemicalGrams": 0
+        }
+      ]
+    },
+    "additional": []
+  }
+}

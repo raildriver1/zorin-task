@@ -98,8 +98,14 @@
     {
       "serviceName": "Терка щётками 2 стороны прицепа ",
       "price": 300
+    },
+    {
+      "serviceName": "легковая",
+      "price": 300,
+      "chemicalConsumption": 0
     }
   ],
   "allowCustomRetailServices": true,
-  "cardAcquiringPercentage": 1.2
+  "cardAcquiringPercentage": 1.2,
+  "dismissedCustomServices": []
 }

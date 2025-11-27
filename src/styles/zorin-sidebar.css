@@ -27,6 +27,9 @@
     transition: var(--z-transition) !important;
     overflow: hidden !important;
     height: 100vh !important;
+    max-height: 100vh !important;
+    display: flex !important;
+    flex-direction: column !important;
 }
 
 .zorin-sidebar[data-state="collapsed"] {
@@ -38,6 +41,7 @@
     padding: 20px !important;
     border-bottom: 1px solid var(--z-light-bg-alt) !important;
     background-color: var(--z-light-bg) !important;
+    flex-shrink: 0 !important;
 }
 
 .zorin-logo-link {
@@ -67,6 +71,8 @@
 .zorin-sidebar-nav {
     padding: 20px 0 !important;
     flex-grow: 1 !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
 }
 
 .zorin-nav-group {
@@ -160,6 +166,7 @@
     padding: 20px !important;
     border-top: 1px solid var(--z-light-bg-alt) !important;
     margin-top: auto !important;
+    flex-shrink: 0 !important;
 }
 
 .zorin-logout-link {

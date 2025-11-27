@@ -1,0 +1,10 @@
+{
+  "id": "emp_1764159773669_6asgiuh",
+  "fullName": "Сотрудник 2",
+  "phone": "+7 (000) 000-00-00",
+  "paymentDetails": "Карта ВТБ 1234 1234 1234 1234",
+  "hasCar": false,
+  "username": "sotrudnik2",
+  "password": "sotrudnik2",
+  "salarySchemeId": "scheme_1755717143027"
+}

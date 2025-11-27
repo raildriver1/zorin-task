@@ -1,0 +1,26 @@
+{
+  "id": "we_1764166070943_lf6r43t",
+  "timestamp": "2025-11-26T14:07:50.943Z",
+  "vehicleNumber": "A123BC777",
+  "employeeIds": [
+    "emp_1764068183793_8syfo62"
+  ],
+  "paymentMethod": "card",
+  "totalAmount": 1100,
+  "netAmount": 1086.8,
+  "acquiringFee": 13.200000000000001,
+  "services": {
+    "main": {
+      "serviceName": "Седельный тягач (европеец)",
+      "price": 1100,
+      "id": "service-Седельный тягач (европеец)-1764166051176",
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1764068183793_8syfo62",
+          "chemicalGrams": 0
+        }
+      ]
+    },
+    "additional": []
+  }
+}

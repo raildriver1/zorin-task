@@ -1,0 +1,33 @@
+{
+  "id": "we_1764087965578_yau6t5u",
+  "timestamp": "2025-11-25T16:26:05.578Z",
+  "vehicleNumber": "EMMOP",
+  "employeeIds": [
+    "emp_1764068183793_8syfo62"
+  ],
+  "paymentMethod": "cash",
+  "totalAmount": 850,
+  "netAmount": 850,
+  "acquiringFee": 0,
+  "services": {
+    "main": {
+      "serviceName": "Полуприцеп (внутри)",
+      "price": 850,
+      "id": "service-Полуприцеп (внутри)-1764087896381",
+      "employeeConsumptions": [
+        {
+          "employeeId": "emp_1764068183793_8syfo62",
+          "amount": 0
+        }
+      ]
+    },
+    "additional": []
+  },
+  "driverComments": [
+    {
+      "text": "Ля дя",
+      "authorId": "emp_manager_admin",
+      "date": "2025-11-25T16:26:05.578Z"
+    }
+  ]
+}
