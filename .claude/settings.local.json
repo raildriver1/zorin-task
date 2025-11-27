@@ -12,7 +12,21 @@
       "Bash(git config:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(go version:*)",
+      "Bash(go mod download:*)",
+      "Bash(go run:*)",
+      "Bash(go build:*)",
+      "Bash(.server.exe)",
+      "Bash(server.exe)",
+      "Bash(./server.exe:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(npm run build:*)",
+      "Bash(xcopy:*)",
+      "Bash(set:*)",
+      "Bash(export GOOS=linux)",
+      "Bash(export GOARCH=amd64)"
     ],
     "deny": [],
     "ask": []

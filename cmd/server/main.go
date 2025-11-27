@@ -157,6 +157,17 @@ func main() {
 		})
 	})
 
+	// Serve static files from Next.js build
+	app.Static("/", "./out", fiber.Static{
+		Browse: false,
+		Index: "index.html",
+	})
+
+	// Fallback to index.html for client-side routing
+	app.Get("/*", func(c *fiber.Ctx) error {
+		return c.SendFile("./out/index.html")
+	})
+
 	// Start server
 	addr := fmt.Sprintf(":%s", cfg.Port)
 	log.Printf("Starting server on %s", addr)
